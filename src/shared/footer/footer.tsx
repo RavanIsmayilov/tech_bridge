@@ -4,8 +4,6 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
-	return (
-		<footer className="bg-[#99D1ED] text-white  w-full h-[400px] flex items-center justify-center">
 			{/* Логотип */}
 			{/* <div className="w-full h-[30px] bg-[#666] flex justify-center items-center">LOGO</div> */}
 
@@ -58,5 +56,9 @@ const Footer: React.FC = () => {
 
 	);
 };
+<>
+</>
+    );
+    };
 
 export default Footer;
