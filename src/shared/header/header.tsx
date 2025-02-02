@@ -9,7 +9,7 @@ const Header: React.FC = () => {
             {/* Logo */}
             <div className="flex items-center space-x-8">
                 <img src="" alt="TechBridge Logo" className="h-8" />
-                <button className="bg-[#008DD294] text-white text-[14px] px-4 py-1 font-bold rounded-lg hover:bg-blue-600 transition cursor-pointer  ">
+                <button className="bg-[#008DD294] text-white text-[12px] px-4 py-1 font-bold rounded-lg hover:bg-blue-600 transition cursor-pointer  ">
                     Dizayna Başla
                 </button>
             </div>
