@@ -1,17 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Footer from "./shared/footer/footer";
 import Header from "./shared/header/header";
+import HomePage from "./pages/home_page/home_page";
+import Footer from "./shared/footer/footer";
 
 function App() {
   return (
     <Router>
       <Header />
-      <main className="p-4">
         <Routes>
-          <Route path="/header" element={<Header />} />
-          <Route path="/footer" element={<Footer />} />
+          <Route path="/" element={<HomePage />} />
         </Routes>
-      </main>
+      <Footer />
     </Router>
   );
 }
