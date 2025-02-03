@@ -1,12 +1,18 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./shared/header/header";
+import HomePage from "./pages/home_page/home_page";
+import Footer from "./shared/footer/footer";
 
 function App() {
-
   return (
-    <>
-		<h1>Hello World!</h1>
-    </>
-  )
+    <Router>
+      <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      <Footer />
+    </Router>
+  );
 }
 
-export default App
+export default App;

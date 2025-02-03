@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@layer base {
+    body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+}
+
+
