@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import WatchVideoIcon from "../../assets/icon/Watch Video Button.svg";
 import FirstSubjectIcon from "../../assets/icon/subject icon 1.svg";
@@ -8,6 +8,10 @@ import MinisterIcon from "../../assets/icon/nazirliy icon.svg";
 import ArtiIcon from "../../assets/icon/arti icon.svg";
 import LeftScroolIcon from "../../assets/icon/Left Scroll- Button.svg";
 import RightScroolIcon from "../../assets/icon/Right Scroll- Button.svg";
+import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg"
+
+
+
 
 const HomePage: React.FC = () => {
   const stats = [
@@ -96,6 +100,68 @@ const HomePage: React.FC = () => {
       prev === 0 ? newsData.length - 2 : prev - 1
     );
   };
+
+	const testimonials = [
+    {
+      name: "Farid Hasanov",
+      image: CommentPhoto,
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step."
+    },
+    {
+      name: "Leyla Jafarova",
+      image: CommentPhoto,
+      text: "Providing everything from premium pet foods to reliable vet consultations, it’s been a game-changer for my pet’s health and happiness. Highly recommend for all pet owners seeking convenience and quality."
+    },
+    {
+      name: "Aysel Aliyeva",
+      image: CommentPhoto,
+      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+    },
+    {
+      name: "Aysel Aliyeva",
+      image: CommentPhoto,
+      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+    },
+    {
+      name: "Aysel Aliyeva",
+      image: CommentPhoto,
+      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+    },
+    {
+      name: "Aysel Aliyeva",
+      image: CommentPhoto,
+      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+    },
+    {
+      name: "Aysel Aliyeva",
+      image: CommentPhoto,
+      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+    },
+    {
+      name: "Aysel Aliyeva",
+      image: CommentPhoto,
+      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+    },
+  ];
+
+  const [index, setIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToIndex = (i: number) => {
+    if (containerRef.current) {
+      const cardWidth = containerRef.current.offsetWidth / 3; // Показываем 3 карточки
+      const scrollAmount = i * cardWidth;
+
+      containerRef.current.scrollTo({
+        left: scrollAmount,
+        behavior: 'smooth',
+      });
+
+      setIndex(i);
+    }
+  };
+
+
 
   return (
     <>
@@ -241,6 +307,51 @@ const HomePage: React.FC = () => {
         </button>
       </div>
     </section>
+
+
+		<div className="overflow-hidden overscroll-none w-full max-w-4xl mx-auto p-5">
+        <div
+          className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          ref={containerRef}
+        >
+          {testimonials.map((testimonial, idx) => (
+            <div
+              key={idx}
+              className="w-[272px] h-[250px] bg-[#F3AA4B] p-5 rounded-xl shadow-md snap-start flex-shrink-0"
+            >
+              <div className="flex justify-around items-center">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-16 h-16 rounded-full "
+                />
+                <h3 className="text-center font-[600] text-[18px] text-white">{testimonial.name}</h3>
+              </div>
+              <div className="mt-[20px] ml-[10px]">
+                <p className="text-left text-[11px] text-white font-[Arial]">{testimonial.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Nöqtələr üçün Dots */}
+        <div className="flex justify-center gap-2 mt-4">
+          {testimonials.slice(0, testimonials.length - 2).map((_, dotIndex) => (
+            <button
+              key={dotIndex}
+              onClick={() => scrollToIndex(dotIndex)}
+              className={`w-3 h-3 rounded-full cursor-pointer ${index === dotIndex ? 'bg-blue-500' : 'bg-gray-400'
+                }`}
+            />
+          ))}
+        </div>
+      </div>
+
+
+
+
+
     </>
   );
 };
