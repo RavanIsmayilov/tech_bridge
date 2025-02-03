@@ -9,6 +9,7 @@ import ArtiIcon from "../../assets/icon/arti icon.svg";
 import LeftScroolIcon from "../../assets/icon/Left Scroll- Button.svg";
 import RightScroolIcon from "../../assets/icon/Right Scroll- Button.svg";
 import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg"
+import Quotation from "../../assets/icon/quotation.svg"
 
 
 
@@ -105,43 +106,39 @@ const HomePage: React.FC = () => {
     {
       name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step."
-    },
-    {
-      name: "Leyla Jafarova",
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+			quotation: Quotation
+		},
+		{
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "Providing everything from premium pet foods to reliable vet consultations, it’s been a game-changer for my pet’s health and happiness. Highly recommend for all pet owners seeking convenience and quality."
-    },
-    {
-      name: "Aysel Aliyeva",
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+			quotation: Quotation
+		},
+		{
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
-    {
-      name: "Aysel Aliyeva",
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+			quotation: Quotation
+		},
+		{
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
-    {
-      name: "Aysel Aliyeva",
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+			quotation: Quotation
+		},
+		{
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
-    {
-      name: "Aysel Aliyeva",
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+			quotation: Quotation
+		},
+		{
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
-    {
-      name: "Aysel Aliyeva",
-      image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
-    {
-      name: "Aysel Aliyeva",
-      image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+			quotation: Quotation
+		},
   ];
 
   const [index, setIndex] = useState(0);
@@ -309,17 +306,18 @@ const HomePage: React.FC = () => {
     </section>
 
 
-		<div className="overflow-hidden overscroll-none w-full max-w-4xl mx-auto p-5">
+		<div className="overflow-hidden overscroll-none w-full max-w-4xl mx-auto p-5 ">
         <div
-          className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+          className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide overflow-hidden"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           ref={containerRef}
         >
           {testimonials.map((testimonial, idx) => (
             <div
               key={idx}
-              className="w-[272px] h-[250px] bg-[#F3AA4B] p-5 rounded-xl shadow-md snap-start flex-shrink-0"
+              className="w-[272px] h-[280px] bg-[#F3AA4B] px-5 rounded-[18px] shadow-md snap-start flex-shrink-0 overflow-hidden"
             >
+							<img src={Quotation} alt="Quotation" className="w-[60px] h-[60px] ml-[180px]" />
               <div className="flex justify-around items-center">
                 <img
                   src={testimonial.image}
@@ -328,8 +326,9 @@ const HomePage: React.FC = () => {
                 />
                 <h3 className="text-center font-[600] text-[18px] text-white">{testimonial.name}</h3>
               </div>
+							
               <div className="mt-[20px] ml-[10px]">
-                <p className="text-left text-[11px] text-white font-[Arial]">{testimonial.text}</p>
+                <p className="text-left text-[13px] text-white font-[Arial]">{testimonial.text}</p>
               </div>
             </div>
           ))}
