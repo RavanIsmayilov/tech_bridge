@@ -8,10 +8,9 @@ import MinisterIcon from "../../assets/icon/nazirliy icon.svg";
 import ArtiIcon from "../../assets/icon/arti icon.svg";
 import LeftScroolIcon from "../../assets/icon/Left Scroll- Button.svg";
 import RightScroolIcon from "../../assets/icon/Right Scroll- Button.svg";
-import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg"
-
-
-
+import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg";
+import Quotation from "../../assets/icon/quotation.svg";
+import HomeBg from "../../assets/images/home_bg.svg";
 
 const HomePage: React.FC = () => {
   const stats = [
@@ -90,57 +89,49 @@ const HomePage: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => 
-      prev >= newsData.length - 2 ? 0 : prev + 1
-    );
-  };
-  
-  const prevSlide = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? newsData.length - 2 : prev - 1
-    );
+    setCurrentIndex((prev) => (prev >= newsData.length - 2 ? 0 : prev + 1));
   };
 
-	const testimonials = [
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev === 0 ? newsData.length - 2 : prev - 1));
+  };
+
+  const testimonials = [
     {
       name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step."
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      quotation: Quotation,
     },
     {
-      name: "Leyla Jafarova",
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "Providing everything from premium pet foods to reliable vet consultations, it’s been a game-changer for my pet’s health and happiness. Highly recommend for all pet owners seeking convenience and quality."
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      quotation: Quotation,
     },
     {
-      name: "Aysel Aliyeva",
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      quotation: Quotation,
     },
     {
-      name: "Aysel Aliyeva",
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      quotation: Quotation,
     },
     {
-      name: "Aysel Aliyeva",
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      quotation: Quotation,
     },
     {
-      name: "Aysel Aliyeva",
+      name: "Farid Hasanov",
       image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
-    {
-      name: "Aysel Aliyeva",
-      image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
-    },
-    {
-      name: "Aysel Aliyeva",
-      image: CommentPhoto,
-      text: "My senior cat’s needs were met beyond expectations. From accessing quality pet foods to connecting with vets, the app ensured a seamless experience, making pet care a breeze."
+      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      quotation: Quotation,
     },
   ];
 
@@ -154,48 +145,48 @@ const HomePage: React.FC = () => {
 
       containerRef.current.scrollTo({
         left: scrollAmount,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
 
       setIndex(i);
     }
   };
 
-
-
   return (
     <>
-      <section className="w-full h-[450px] bg-[#6BBDE5B0] flex flex-col md:flex-row items-center justify-around px-4 py-8 md:py-12 md:px-16 rounded-lg shadow-lg">
-        {/* Left Side: Image & Icons */}
-        <div className="flex items-center space-x-4">
-          <img
-            src="/banner-image.png"
-            alt="Creative Banner"
-            className="w-48 md:w-64"
-          />
-        </div>
+      <section
+        className="bg-[#6BBDE5] w-full h-[450px] md:h-[650px] bg-cover bg-center flex items-center justify-center md:justify-end px-6 py-8 md:py-12 md:px-16 shadow-lg relative"
+        style={{ backgroundImage: `url(${HomeBg})` }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 mix-blend-multiply"></div>
 
         {/* Right Side: Text & Button */}
-        <div className="text-center md:text-center">
-          <h2 className="text-2xl md:text-[32px] font-bold text-[#08244E]">
-            Yaradıcılığın məktəbinə <br /> buradan keç!
+        <div className="relative z-10 text-center md:text-center flex flex-col items-center md:items-center">
+          <h2 className="text-2xl md:text-[32px] font-bold text-[#08244E] leading-tight">
+            Yaradıcılığın məktəbinə <br className="hidden md:block" /> buradan
+            keç!
           </h2>
-          <div className="mt-4 flex flex-col md:flex-col items-center md:items-center gap-[10px]">
-            <button className="bg-[#FDD446] cursor-pointer text-[#08244E] px-6 py-1 rounded-[30px] text-[20px] font-bold shadow-md hover:bg-yellow-500 transition">
+          <div className="mt-4 flex flex-col items-center md:items-start gap-3">
+            <button className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center">
               Keçid et
             </button>
             <Link
               to="#"
               className="text-gray-800 text-sm flex items-center space-x-2 hover:underline"
             >
-              <img src={WatchVideoIcon} alt="WatchVideoIcon" />
+              <img
+                src={WatchVideoIcon}
+                alt="WatchVideoIcon"
+                className="w-5 h-5"
+              />
               <span>Videonu izlə</span>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="text-center py-8">
+      <section className="text-center py-8 px-4">
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-10">
           Burada rəqəmlər danışır
         </h2>
@@ -203,7 +194,7 @@ const HomePage: React.FC = () => {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="bg-gradient-to-b from-[#ED8116] to-[#F3AA3B] text-white w-[344px] h-[144px] flex flex-col  items-center rounded-b-[20px] shadow-lg"
+              className="bg-gradient-to-b from-[#ED8116] to-[#F3AA3B] text-white w-full md:w-[344px] h-[144px] flex flex-col items-center rounded-b-[20px] shadow-lg"
             >
               <div className="bg-[#ED8116] text-[28px] w-full text-center py-2 rounded-t-lg font-bold">
                 {stat.title}
@@ -260,76 +251,87 @@ const HomePage: React.FC = () => {
       </section>
 
       <section className="text-center py-8">
-      <h2 className="text-[42px] font-bold text-[#C068A6] mb-12">
-        Xəbərlər & Tədbirlər
-      </h2>
-      <div className="relative flex items-center justify-center overflow-hidden w-full ">
-        <button
-          className="absolute left-60 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
-          onClick={prevSlide}
-        >
-          <img className="w-14" src={LeftScroolIcon} alt="LeftScroolIcon" />
-        </button>
-        
-        {/* Slider */}
-        <div className="overflow-hidden w-[90%] md:w-[60%] ">
-          <div
-            className="flex transition-transform duration-500 ease-in-out gap-6"
-            style={{ transform: `translateX(-${currentIndex * 52}%)` }}
+        <h2 className="text-[42px] font-bold text-[#C068A6] mb-12">
+          Xəbərlər & Tədbirlər
+        </h2>
+        <div className="relative flex items-center justify-center overflow-hidden w-full ">
+          <button
+            className="absolute left-60 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
+            onClick={prevSlide}
           >
-            {newsData.map((news, index) => (
-              <div
-                key={index}
-                className="border-2 border-[#C068A6] rounded-[30px] p-6 w-[45%] md:w-[35%] flex-shrink-0 shadow-lg"
-              >
-                <h3 className="font-bold text-lg text-left">{news.title}</h3>
-                <p className="text-black mt-2 text-left">{news.description}</p>
-                {news.image && (
-                  <img
-                    src={news.image}
-                    alt="news"
-                    className="mt-4 rounded-lg"
-                  />
-                )}
-                <button className="flex self-end mt-12 bg-[#C068A6] text-white px-4 py-2 rounded-full text-sm cursor-pointer">
-                  See all...
-                </button>
-              </div>
-            ))}
+            <img className="w-14" src={LeftScroolIcon} alt="LeftScroolIcon" />
+          </button>
+
+          {/* Slider */}
+          <div className="overflow-hidden w-[90%] md:w-[60%] ">
+            <div
+              className="flex transition-transform duration-500 ease-in-out gap-6"
+              style={{ transform: `translateX(-${currentIndex * 52}%)` }}
+            >
+              {newsData.map((news, index) => (
+                <div
+                  key={index}
+                  className="border-2 h-[450px] border-[#C068A6] rounded-[30px] p-6 w-[75%] lg:w-[45%] flex-shrink-0 shadow-lg"
+                >
+                  <h3 className="font-bold text-lg text-left">{news.title}</h3>
+                  <p className="text-black mt-2 text-left">
+                    {news.description}
+                  </p>
+                  {news.image && (
+                    <img
+                      src={news.image}
+                      alt="news"
+                      className="mt-4 rounded-lg"
+                    />
+                  )}
+                  <button className="flex self-end mt-12 bg-[#C068A6] text-white px-4 py-2 rounded-full text-sm cursor-pointer">
+                    See all...
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
+
+          <button
+            className="absolute right-60 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
+            onClick={nextSlide}
+          >
+            <img className="w-14" src={RightScroolIcon} alt="RightScroolIcon" />
+          </button>
         </div>
+      </section>
 
-        <button
-          className="absolute right-60 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
-          onClick={nextSlide}
-        >
-          <img className="w-14" src={RightScroolIcon} alt="RightScroolIcon" />
-        </button>
-      </div>
-    </section>
-
-
-		<div className="overflow-hidden overscroll-none w-full max-w-4xl mx-auto p-5">
+      <div className="overflow-hidden overscroll-none w-full max-w-4xl mx-auto p-5">
         <div
           className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           ref={containerRef}
         >
           {testimonials.map((testimonial, idx) => (
             <div
               key={idx}
-              className="w-[272px] h-[250px] bg-[#F3AA4B] p-5 rounded-xl shadow-md snap-start flex-shrink-0"
+              className="w-[80%] sm:w-[272px] h-[280px] bg-[#F3AA4B] px-5 rounded-[18px] shadow-md snap-start flex-shrink-0 overflow-hidden"
             >
+              <img
+                src={Quotation}
+                alt="Quotation"
+                className="w-[60px] h-[60px] ml-[180px]"
+              />
               <div className="flex justify-around items-center">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
                   className="w-16 h-16 rounded-full "
                 />
-                <h3 className="text-center font-[600] text-[18px] text-white">{testimonial.name}</h3>
+                <h3 className="text-center font-[600] text-[18px] text-white">
+                  {testimonial.name}
+                </h3>
               </div>
+
               <div className="mt-[20px] ml-[10px]">
-                <p className="text-left text-[11px] text-white font-[Arial]">{testimonial.text}</p>
+                <p className="text-left text-[13px] text-white font-[Arial]">
+                  {testimonial.text}
+                </p>
               </div>
             </div>
           ))}
@@ -341,17 +343,13 @@ const HomePage: React.FC = () => {
             <button
               key={dotIndex}
               onClick={() => scrollToIndex(dotIndex)}
-              className={`w-3 h-3 rounded-full cursor-pointer ${index === dotIndex ? 'bg-blue-500' : 'bg-gray-400'
-                }`}
+              className={`w-3 h-3 rounded-full cursor-pointer ${
+                index === dotIndex ? "bg-blue-500" : "bg-gray-400"
+              }`}
             />
           ))}
         </div>
       </div>
-
-
-
-
-
     </>
   );
 };
