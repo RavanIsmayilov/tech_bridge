@@ -51,7 +51,7 @@ const programs: Program[] = [
 
 const EducationPrograms: React.FC = () => {
   return (
-    <div className="p-6 pt-8 max-w-6xl mx-auto text-center">
+    <div className="p-6 max-w-6xl mx-auto text-center">
       <h2 className="font-bold md:text-[33px] text-[28px] tracking-[-0.01em] text-[#08244E] text-left">
         Hər kəs Kompüter Elmlərini öyrənə bilər
       </h2>
