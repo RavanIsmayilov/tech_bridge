@@ -9,26 +9,29 @@ import PuzzleGamePage from "./pages/puzzle_game/puzzle_game_page";
 
 function App() {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Router>
-        <Routes>
-          <Route path="/puzzlegame" element={<PuzzleGamePage />} />
-          <Route
-            path="/*"
-            element={
-              <>
-                <Header />
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/educationpage" element={<EducationPage />} />
-                </Routes>
-                <Footer />
-              </>
-            }
-          />
-        </Routes>
-      </Router>
-    </DndProvider>
+    <>
+      <DndProvider backend={HTML5Backend}>
+        <Router>
+          <Routes>
+            <Route path="/puzzlegame" element={<PuzzleGamePage />} />
+            <Route
+              path="/*"
+              element={
+                <>
+                  <Header />
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/educationpage" element={<EducationPage />} />
+                  </Routes>
+                  <Footer />  
+                </>
+              }
+            />
+          </Routes>
+        </Router>
+      </DndProvider>
+    </>
+
   );
 }
 
