@@ -1,9 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import WatchVideoIcon from "../../assets/icon/Watch Video Button.svg";
-import FirstSubjectIcon from "../../assets/icon/subject icon 1.svg";
-import SecondSubjectIcon from "../../assets/icon/subject icon 2.svg";
-import ThirdSubjectIcon from "../../assets/icon/subject icon 3.svg";
 import MinisterIcon from "../../assets/icon/nazirliy icon.svg";
 import ArtiIcon from "../../assets/icon/arti icon.svg";
 import LeftScroolIcon from "../../assets/icon/Left Scroll- Button.svg";
@@ -13,38 +10,76 @@ import Quotation from "../../assets/icon/quotation.svg";
 import HomeBg from "../../assets/images/home_bg.svg";
 
 const HomePage: React.FC = () => {
-  const stats = [
-    { title: "Tələbələr", count: 250 },
-    { title: "Valideynlər", count: 250 },
-    { title: "Regionlar", count: 250 },
-  ];
-
-  const courses = [
-    {
-      title: "Blok Kodlaşdırmanı Öyrən",
-      description: "Blok kodlaşdırma proqramlaşdırma üsuludur",
-      image: FirstSubjectIcon,
-    },
-    {
-      title: "Süni İntellekt",
-      description:
-        "Süni İntellekt, kompüterlərin öyrənib, qərar vermə qabiliyyətidir",
-      image: SecondSubjectIcon,
-    },
-    {
-      title: "Avadanlıq Laboratoriyası",
-      description:
-        "Avadanlıq Laboratoriyası, avadanlıqların test edildiyi məkandır",
-      image: ThirdSubjectIcon,
-    },
-  ];
-
   const partners = [
     { name: "Elm və Təhsil Nazirliyi", image: MinisterIcon },
     { name: "ARTİ", image: ArtiIcon },
     { name: "Elm və Təhsil Nazirliyi", image: MinisterIcon },
     { name: "ARTİ", image: ArtiIcon },
     { name: "Elm və Təhsil Nazirliyi", image: MinisterIcon },
+  ];
+
+  const courses = [
+    {
+      title: "Blok Kodlaşdırma",
+      description: "Blok kodlaşdırma vizual proqramlaşdırma üsuludur.",
+      color: "bg-[#DFADFF]",
+      image: "src/assets/images/subjectsimage1.svg", // Replace with actual image path
+      position: "top-14 right-[-25px]",
+    },
+    {
+      title: "Süni İntellekt",
+      description:
+        "Süni İntellekt, kompüterlərin öyrənib, qərar vermə qabiliyyətidir.",
+      color: "bg-[#38CDFF]",
+      image: "src/assets/images/subjectsimage2.svg", // Replace with actual image path
+      position: "top-34",
+    },
+    {
+      title: "Avadanlıq Laboratoriyası",
+      description:
+        "Avadanlıq Laboratoriyası, avadanlıqların test edildiyi məkandır.",
+      color: "bg-[#FF5A50DB]",
+      image: "src/assets/images/subjectsimage3.svg", // Replace with actual image path
+      position: "top-28",
+    },
+    {
+      title: "Kvant Hesablamaları",
+      description:
+        "Kvant hesablamaları kvant mexanikasına əsaslanan hesablama üsuludur.",
+      color: "bg-[#CBF86D]",
+      image: "src/assets/images/subjectsimage4.svg", // Replace with actual image path
+      position: "top-23 right-[-20px]",
+    },
+  ];
+
+  const steps = [
+    {
+      number: "1",
+      title: "Sual ver",
+      description:
+        "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
+      icon: "src/assets/images/quesimage3.svg", // Replace with actual icon path
+      flex: "flex-col",
+      position: "pb-[100px]",
+    },
+    {
+      number: "2",
+      title: "Layihələri bölüş",
+      description:
+        "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
+      icon: "src/assets/images/quesimage2.svg", // Replace with actual icon path
+      flex: "flex-col-reverse",
+      position: "pt-[100px]",
+    },
+    {
+      number: "3",
+      title: "Digərlərinə dəstək ol",
+      description:
+        "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
+      icon: "src/assets/images/quesimage1.svg", // Replace with actual icon path
+      flex: "flex-col",
+      position: "",
+    },
   ];
 
   const newsData = [
@@ -155,7 +190,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <section
-        className="bg-[#6BBDE5] w-full h-[450px] md:h-[650px] bg-cover bg-center flex items-center justify-center md:justify-end px-6 py-8 md:py-12 md:px-16 shadow-lg relative"
+        className="bg-[#6BBDE5] w-full h-[450px] md:h-[650px] bg-cover bg-center flex items-center justify-center md:justify-end px-6 py-8 md:py-12 md:px-[150px] shadow-lg relative"
         style={{ backgroundImage: `url(${HomeBg})` }}
       >
         {/* Overlay */}
@@ -168,70 +203,167 @@ const HomePage: React.FC = () => {
             keç!
           </h2>
           <div className="mt-4 flex flex-col items-center md:items-start gap-3">
-            <button className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center">
+            <button className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center cursor-pointer">
               Keçid et
             </button>
             <Link
               to="#"
-              className="text-gray-800 text-sm flex items-center space-x-2 hover:underline"
+              className="text-[#08244E] text-[18px] flex items-center space-x-2 hover:underline"
             >
               <img
                 src={WatchVideoIcon}
                 alt="WatchVideoIcon"
                 className="w-5 h-5"
               />
-              <span>Videonu izlə</span>
+              <span className="">Videonu izlə</span>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="text-center py-8 px-4">
-        <h2 className="text-[42px] font-bold text-[#C068A6] mb-10">
-          Burada rəqəmlər danışır
+      <section className="bg-[#3B5D7D] py-4 px-8 h-[232px] flex items-center">
+        <div className="w-full flex items-center text-white max-w-[1600px] mx-auto">
+          <div className="text-[42px] font-bold border-r-2 pr-7 h-[110px] flex items-center text-center">
+            Burada rəqəmlər danışır:
+          </div>
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center px-7">
+              <span className="text-[38px] font-bold mr-7">Tələbələr:</span>
+              <span className="bg-[#ED8116] text-white font-bold text-[20px] py-3 px-3 rounded-full">
+                250
+              </span>
+            </div>
+            <div className="flex items-center">
+              <span className="text-[38px] font-bold mr-7">Valideynlər:</span>
+              <span className="bg-[#78D148] text-white font-bold text-[20px] py-3 px-3 rounded-full">
+                250
+              </span>
+            </div>
+            <div className="flex items-center">
+              <span className="text-[38px] font-bold mr-7">Regionlar:</span>
+              <span className="bg-[#6BBDE5] text-white font-bold text-[20px] py-3 px-3 rounded-full">
+                250
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative flex items-center justify-between pt-[120px] pb-[200px] px-8">
+        <img
+          className="absolute top-0 left-0"
+          src="src/assets/images/aboutframeup.svg"
+          alt=""
+        />
+        <div className="flex w-full justify-between overflow-hidden">
+          {/* Left Side (Image) */}
+          <div className=" w-full p-4 h-full">
+            <img
+              src="src/assets/images/aboutimage1.svg" // Replace with your image URL
+              alt="About Image"
+              className="absolute top-50 left-20 object-cover z-1 "
+            />
+            <img
+              src="src/assets/images/aboutellipse.svg" // Replace with your image URL
+              alt="About Image"
+              className="absolute object-cover top-60 left-70 right-50 "
+            />
+            <img
+              src="src/assets/images/aboutimage2.svg" // Replace with your image URL
+              alt="About Image"
+              className="absolute bottom-0 left-120 object-cover z-2 "
+            />
+          </div>
+
+          {/* Right Side (Text Content) */}
+          <div className="w-full p-8 text-white font-verdana">
+            <h2 className="text-5xl font-bold mb-6 text-[#6C325B] text-center">
+              Haqqımızda
+            </h2>
+            <p className="text-[36px] font-verdana text-black">
+              Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
+              onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
+              digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
+              gələcəyin texnologiyalarını kəşf edin və innovasiyanın bir hissəsi
+              olun!
+            </p>
+          </div>
+        </div>
+        <img
+          className="absolute bottom-0 right-0"
+          src="src/assets/images/aboutframedown.svg"
+          alt=""
+        />
+      </section>
+
+      <section className="py-25 px-8 max-w-[1600px] mx-auto">
+        <h2 className="text-6xl font-bold text-start text-[#08244E] mb-15">
+          Bizim dərslərimiz
         </h2>
-        <div className="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-8">
-          {stats.map((stat, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-30">
+          {courses.map((course, index) => (
             <div
               key={index}
-              className="bg-gradient-to-b from-[#ED8116] to-[#F3AA3B] text-white w-full md:w-[344px] h-[144px] flex flex-col items-center rounded-b-[20px] shadow-lg"
+              className={`relative rounded-[30px] p-15 text-[#08244E] font-verdana ${course.color} flex flex-col items-start`}
             >
-              <div className="bg-[#ED8116] text-[28px] w-full text-center py-2 rounded-t-lg font-bold">
-                {stat.title}
-              </div>
-              <p className="text-[28px] font-bold mt-5">{stat.count}</p>
+              <img
+                src={course.image}
+                alt={course.title}
+                className={`absolute bottom-0 ${course.position} right-0 mb-4 object-cover rounded-full`}
+              />
+              <h3 className="text-[28px] mb-4 font-bold">{course.title}</h3>
+              <p className="text-[20px] mb-15 text-[#08244ECF] w-[400px]">
+                {course.description}
+              </p>
+              <button className="bg-white italic text-[#08244E] py-2 px-7 rounded-[23px] text-[18px] font-bold hover:bg-gray-200 transition cursor-pointer">
+                Keçid et
+              </button>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="text-center py-12">
-        <h2 className="text-[42px] font-bold text-[#C068A6] mb-10">
-          Bizim dərslərimiz
-        </h2>
-        <div className="flex flex-col md:flex-row justify-around items-center space-y-6 md:space-y-0 md:space-x-8">
-          {courses.map((course, index) => (
-            <div
-              key={index}
-              className="bg-[#8DCEDE75] px-6 pb-7 pt-8 rounded-[52px] shadow-lg w-[350px] h-[350px] flex flex-col justify-between"
-            >
-              <div className="flex flex-col">
-                <h3 className="text-[18px] font-bold text-[#C068A6]">
-                  {course.title}
-                </h3>
-                <p className="text-sm text-black mt-2 bg-white rounded-[28px] p-1">
-                  {course.description}
-                </p>
-              </div>
-              <img
-                src={course.image}
-                alt={course.title}
-                className="w-42 mx-auto"
-              />
-            </div>
-          ))}
+      <div className="pb-25 pt-10 px-8 h-[100vh] relative overflow-hidden">
+        <div className="absolute w-full inset-0 -z-10">
+          <img
+            src="src/assets/images/quessecbg.svg" // Replace with your wavy background image URL
+            alt="Background"
+            className="object-cover w-full"
+          />
         </div>
-      </section>
+
+        <section className="relative text-white">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className={` flex items-center gap-8 p-8 rounded-lg justify-between ${step.position} ${step.flex} text-center`}
+              >
+                <div className="mb-4 w-[371px] h-[358px] flex items-center justify-center p-6 bg-white rounded-full">
+                  <img
+                    src={step.icon}
+                    alt={step.title}
+                    className=" object-contain"
+                  />
+                </div>
+                <div className="flex flex-col items-start text-left ">
+                  <div className="flex gap-7 items-center">
+                    <h3 className="text-6xl bg-[#FDD446] w-[102px] h-[102px] rounded-full font-bold mb-4 flex items-center justify-center">
+                      {step.number}
+                    </h3>
+                    <h4 className="text-[#6C325B] font-bold text-[38px] mb-4">
+                      {step.title}
+                    </h4>
+                  </div>
+                  <p className="text-[20px] text-[#08244E] font-medium tracking-[3px]">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
 
       <section className="text-center py-8">
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-10">
