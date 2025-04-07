@@ -8,6 +8,10 @@ import RightScroolIcon from "../../assets/icon/Right Scroll- Button.svg";
 import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg";
 import Quotation from "../../assets/icon/quotation.svg";
 import HomeBg from "../../assets/images/home_bg.svg";
+import { motion } from "framer-motion";
+import { animation } from "../../utils/Animation";
+import { fadeInAnimationVariants } from "../../utils/FadeInAnimation";
+import AnimatedCounter from "../../components/general/AnimatedCounter";
 
 const HomePage: React.FC = () => {
   const partners = [
@@ -189,7 +193,10 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <section
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
         className="bg-[#6BBDE5] w-full h-[450px] md:h-[650px] bg-cover bg-center flex items-center justify-center md:justify-end px-6 py-8 md:py-12 md:px-[150px] shadow-lg relative"
         style={{ backgroundImage: `url(${HomeBg})` }}
       >
@@ -197,29 +204,42 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 mix-blend-multiply"></div>
 
         {/* Right Side: Text & Button */}
-        <div className="relative z-10 text-center md:text-center flex flex-col items-center md:items-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-10 text-center md:text-center flex flex-col items-center md:items-center"
+        >
           <h2 className="text-2xl md:text-[32px] font-bold text-[#08244E] leading-tight">
             Yaradıcılığın məktəbinə <br className="hidden md:block" /> buradan
             keç!
           </h2>
-          <div className="mt-4 flex flex-col items-center md:items-start gap-3">
-            <button className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center cursor-pointer">
-              Keçid et
-            </button>
-            <Link
-              to="#"
-              className="text-[#08244E] text-[18px] flex items-center space-x-2 hover:underline"
+          <div className="mt-4 flex flex-col justify-center items-center md:items-start gap-3">
+            <motion.button
+              whileTap={{ scale: 0.7 }}
+              className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center cursor-pointer"
             >
-              <img
-                src={WatchVideoIcon}
-                alt="WatchVideoIcon"
-                className="w-5 h-5"
-              />
-              <span className="">Videonu izlə</span>
-            </Link>
+              Keçid et
+            </motion.button>
+            <motion.div
+              whileTap={{ scale: 0.7 }}
+              className="flex justify-center items-center"
+            >
+              <Link
+                to="#"
+                className="text-[#08244E] text-[18px] flex items-center justify-center space-x-2 hover:underline"
+              >
+                <img
+                  src={WatchVideoIcon}
+                  alt="WatchVideoIcon"
+                  className="w-5 h-5"
+                />
+                <span className="">Videonu izlə</span>
+              </Link>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       <section className="bg-[#3B5D7D] py-4 px-8 h-[232px] flex items-center">
         <div className="w-full flex items-center text-white max-w-[1600px] mx-auto">
@@ -229,21 +249,15 @@ const HomePage: React.FC = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center px-7">
               <span className="text-[38px] font-bold mr-7">Tələbələr:</span>
-              <span className="bg-[#ED8116] text-white font-bold text-[20px] py-3 px-3 rounded-full">
-                250
-              </span>
+              <AnimatedCounter color="[#ED8116]" />
             </div>
             <div className="flex items-center">
               <span className="text-[38px] font-bold mr-7">Valideynlər:</span>
-              <span className="bg-[#78D148] text-white font-bold text-[20px] py-3 px-3 rounded-full">
-                250
-              </span>
+              <AnimatedCounter color="[#78D148]" />
             </div>
             <div className="flex items-center">
               <span className="text-[38px] font-bold mr-7">Regionlar:</span>
-              <span className="bg-[#6BBDE5] text-white font-bold text-[20px] py-3 px-3 rounded-full">
-                250
-              </span>
+              <AnimatedCounter color="[#6BBDE5]" />
             </div>
           </div>
         </div>
@@ -258,7 +272,9 @@ const HomePage: React.FC = () => {
         <div className="flex w-full justify-between overflow-hidden">
           {/* Left Side (Image) */}
           <div className=" w-full p-4 h-full">
-            <img
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
               src="src/assets/images/aboutimage1.svg" // Replace with your image URL
               alt="About Image"
               className="absolute top-50 left-20 object-cover z-1 "
@@ -268,7 +284,9 @@ const HomePage: React.FC = () => {
               alt="About Image"
               className="absolute object-cover top-60 left-70 right-50 "
             />
-            <img
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
               src="src/assets/images/aboutimage2.svg" // Replace with your image URL
               alt="About Image"
               className="absolute bottom-0 left-120 object-cover z-2 "
@@ -300,11 +318,23 @@ const HomePage: React.FC = () => {
         <h2 className="text-6xl font-bold text-start text-[#08244E] mb-15">
           Bizim dərslərimiz
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-30">
+        <motion.div
+          variants={animation}
+          initial="initial"
+          whileInView="animate"
+          transition={{ duration: 1 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-30"
+        >
           {courses.map((course, index) => (
-            <div
+            <motion.div
+              initial="initial"
+              variants={fadeInAnimationVariants}
               key={index}
-              className={`relative rounded-[30px] p-15 text-[#08244E] font-verdana ${course.color} flex flex-col items-start`}
+              whileInView="animate"
+              viewport={{ once: true }}
+              custom={index}
+              whileHover={{ scale: 1.1 }}
+              className={`relative rounded-[30px] p-15 text-[#08244E] font-verdana ${course.color} flex flex-col items-start hover:shadow-md transition-shadow duration-200`}
             >
               <img
                 src={course.image}
@@ -315,12 +345,15 @@ const HomePage: React.FC = () => {
               <p className="text-[20px] mb-15 text-[#08244ECF] w-[400px]">
                 {course.description}
               </p>
-              <button className="bg-white italic text-[#08244E] py-2 px-7 rounded-[23px] text-[18px] font-bold hover:bg-gray-200 transition cursor-pointer">
+              <motion.button
+                whileTap={{ scale: 0.7 }}
+                className="bg-white italic text-[#08244E] py-2 px-7 rounded-[23px] text-[18px] font-bold hover:bg-gray-200 transition cursor-pointer"
+              >
                 Keçid et
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       <div className="pb-25 pt-10 px-8 h-[100vh] relative overflow-hidden">
@@ -335,7 +368,16 @@ const HomePage: React.FC = () => {
         <section className="relative text-white">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {steps.map((step, index) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.2 * index,
+                  type: "spring",
+                  stiffness: 200,
+                }}
+                whileHover={{ scale: 1.05, rotate: 1 }}
                 key={index}
                 className={` flex items-center gap-8 p-8 rounded-lg justify-between ${step.position} ${step.flex} text-center`}
               >
@@ -359,7 +401,7 @@ const HomePage: React.FC = () => {
                     {step.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -371,13 +413,19 @@ const HomePage: React.FC = () => {
         </h2>
         <div className="flex flex-wrap justify-around items-center space-x-8">
           {partners.map((partner, index) => (
-            <div key={index} className="w-[200px] flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 * index }}
+              key={index}
+              className="w-[200px] flex flex-col items-center"
+            >
               <img
                 src={partner.image}
                 alt={partner.name}
                 className="w-[300px] mb-2"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
