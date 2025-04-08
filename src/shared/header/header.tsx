@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scroll, setScroll] = useState<number>(1);
+  const [scroll, setScroll] = useState<number>(0);
 
   useEffect(() => {
     const handleScroll = () => setScroll(window.scrollY);
@@ -37,7 +37,9 @@ const Header: React.FC = () => {
       >
         {/* Logo & Button */}
         <div className="flex items-center space-x-15">
-          <img src={Logo} alt="TechBridge Logo" className="h-8" />
+          <Link to="/">
+            <img src={Logo} alt="TechBridge Logo" className="h-8" />
+          </Link>
           <motion.button
             whileTap={{ scale: 0.7 }}
             className="bg-[#008DD294] text-white text-[12px] px-4 py-2 font-bold rounded-lg hover:bg-blue-700 transition cursor-pointer"
@@ -49,7 +51,7 @@ const Header: React.FC = () => {
         <div className="flex gap-12 items-center">
           {/* Navigation */}
           <nav className="hidden text-[14px] xl:text-[18px] lg:flex space-x-[64px] text-black ">
-            <Link to="#" className="hover:text-blue-600 transition-all">
+            <Link to="/" className="hover:text-blue-600 transition-all">
               Ana səhifə
             </Link>
             <Link to="#" className="hover:text-blue-600 transition-all">
