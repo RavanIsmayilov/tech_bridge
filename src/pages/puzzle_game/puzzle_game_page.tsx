@@ -6,6 +6,7 @@ import PuzzleHeader from "../../components/puzzle_game/puzzle_header";
 import puzzle1 from "../../assets/images/puzzle1.svg";
 import puzzle2 from "../../assets/images/puzzle1.svg";
 import puzzle3 from "../../assets/images/puzzle1.svg";
+import TurnIcon from "../../assets/icon/TurnIcon.svg";
 
 const levels = [
   { id: 1, instruction: "Bloku klikləyin", image: puzzle1 },
@@ -16,13 +17,16 @@ const levels = [
 const PuzzleGamePage: React.FC = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [completed, setCompleted] = useState(false);
-
+  
   const nextLevel = () => {
-    if (currentLevel < levels.length - 1) {
-      setCurrentLevel(currentLevel + 1);
-      setCompleted(false);
-    }
+    setCurrentLevel((prevLevel) => {
+      console.log("Səviyyə dəyişdi:", prevLevel + 1);
+      return prevLevel + 1;
+    });
+    setCompleted(false);
   };
+  
+  
 
   const goToLevel = (level: number) => {
     setCurrentLevel(level);
@@ -30,25 +34,29 @@ const PuzzleGamePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="flex flex-col">
       {/* Header */}
       <PuzzleHeader currentLevel={currentLevel} goToLevel={goToLevel} />
 
       {/* Təlimatlar Bölməsi */}
-      <div className="bg-blue-900 text-white text-center py-2 text-xl font-bold">Təlimatlar</div>
-      <div className="border border-yellow-500 mx-6 my-2 p-4 text-center text-lg font-semibold">
+      <div className="bg-[#08244E] text-white text-center py-2 text-[24px] font-bold">Təlimatlar</div>
+      <div className="border border-[#FDD446] mx-14 my-2 py-4 text-center text-[22px] font-semibold text-[#08244E]">
         {levels[currentLevel].instruction}
       </div>
 
       {/* İş Sahəsi */}
-      <div className="bg-blue-900 text-white text-center py-2 text-xl font-bold flex justify-between px-6">
-        <span>İş sahəsi {currentLevel + 1}</span>
-        <button onClick={() => window.location.reload()} className="text-white text-xl">↻</button>
+      <div className="bg-[#08244E] text-white py-2 flex px-14 justify-end">
+        <div className="flex items-center justify-between w-[54%]">
+          <span className="bg-[#08244E] text-white text-center text-[24px] font-bold">İş sahəsi</span>
+          <button onClick={() => window.location.reload()} className="cursor-pointer self-end">
+            <img className="" src={TurnIcon} alt="TurnIcon" />
+          </button>
+        </div>
       </div>
 
       {/* Puzzle Game */}
-      <div className="flex justify-center p-6">
-        <PuzzleGame currentLevel={currentLevel} setCompleted={setCompleted} />
+      <div className="flex justify-center mx-14">
+        <PuzzleGame currentLevel={currentLevel} setCompleted={setCompleted}  />
       </div>
 
       {/* Modal */}

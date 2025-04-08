@@ -7,7 +7,14 @@ import Footer from "./shared/footer/footer";
 import ExpressPage from "./pages/express/express_page"
 import EducationPage from "./pages/education_page/education_page"
 import PuzzleGamePage from "./pages/puzzle_game/puzzle_game_page"
+ 
 import DragDropPage from "./pages/dragdrop/dragdrop_page"
+ 
+import DonatePage from "./pages/donate_page/donate_page";
+import DonateFormPage from "./pages/donate_page/donate_form_page";
+import RegisterPage from "./pages/register/register_page";
+import LoginPage from "./pages/login/login_page";
+ 
 
 
 function App() {
@@ -26,6 +33,10 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/educationpage" element={<EducationPage />} />
                   <Route path="/express" element={<ExpressPage />} />
+                  <Route path="/donatepage" element={<DonatePage />} />
+                  <Route path="/donateformpage" element={<DonateFormPage />} />
+                  <Route path="/registerpage" element={<RegisterPage />} />
+                  <Route path="/loginpage" element={<LoginPage />} />
                 </Routes>
                 <Footer />
               </>

@@ -1,6 +1,10 @@
-import React from "react";
-import { useDrag, useDrop } from "react-dnd";
-import Puzzle1 from "../../assets/images/puzzle1.svg"
+import React, { useState } from "react";
+import { useDrop } from "react-dnd";
+import PuzzlePiece from "./puzzle_piece";
+import puzzlePart1 from "../../assets/images/puzzle1.svg";
+import puzzlePart2 from "../../assets/images/puzzle1.svg";
+import puzzlePart3 from "../../assets/images/puzzle1.svg";
+import fullPuzzle from "../../assets/images/puzzle1.svg";
 
 interface PuzzleGameProps {
   currentLevel: number;
@@ -8,66 +12,88 @@ interface PuzzleGameProps {
 }
 
 const levels = [
-  { id: 1, instruction: "Bloku klikləyin", image: Puzzle1},
-  { id: 2, instruction: "Bloku hədəfə aparın", image: Puzzle1 },
-  { id: 3, instruction: "Yeni tapşırıq", image: Puzzle1 },
+  { id: 1, instruction: "Bloku klikləyin", parts: [{ id: 1, image: puzzlePart1 }] },
+  { id: 2, instruction: "Bloku hədəfə aparın", parts: [{ id: 1, image: puzzlePart1 }] },
+  {
+    id: 3,
+    instruction: "Puzzle parçalarını düzgün yerə yerləşdirin",
+    parts: [
+      { id: 1, image: puzzlePart1 },
+      { id: 2, image: puzzlePart2 },
+      { id: 3, image: puzzlePart3 },
+    ],
+    fullImage: fullPuzzle,
+  },
 ];
 
 const PuzzleGame: React.FC<PuzzleGameProps> = ({ currentLevel, setCompleted }) => {
-  // Drag & Drop Hooks
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: "puzzle",
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-  }));
+  const [placedParts, setPlacedParts] = useState<number[]>([]);
+  const currentPuzzle = levels[currentLevel];
+
+  console.log("currentLevel:", currentLevel);
+  console.log("currentPuzzle:", currentPuzzle);
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "puzzle",
-    drop: () => setCompleted(true),
+    drop: (item: { id: number }) => {
+      console.log("🔥 Düşən element:", item); // 🔥 Konsolda görünməlidir!
+      
+      setPlacedParts((prev) => {
+        const newParts = [...prev, item.id];
+        console.log("🧩 Yeni placedParts:", newParts); // 🔥 Bu da çıxmalıdır!
+        if (newParts.length === currentPuzzle.parts.length) {
+          setCompleted(true);
+        }
+        return newParts;
+      });
+    },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
   }));
-
+  
+  console.log("📌 placedParts:", placedParts);
+  
+  
+  console.log("📌 placedParts:", placedParts);
+  
   return (
-    <div className="flex justify-start items-center w-full px-6"> {/* Bloklar sola hizalanır */}
-      {currentLevel === 0 ? (
-        // ✅ 1-ci Dərs: Sadəcə klik etmək (Sol tərəfdə olacaq)
-        <button
-          className="p-4 bg-white shadow-md cursor-pointer"
-          onClick={() => setCompleted(true)}
-        >
-          <img src={levels[currentLevel].image} alt="Puzzle" className="w-40" />
-        </button>
-      ) : currentLevel === 1 ? (
-        // ✅ 2-ci Dərs: Drag & Drop (Sol tərəfdə olacaq)
+    <div className="flex justify-around items-center w-full py-14">
+      {currentLevel === 3 ? (
         <>
-          <div ref={drag} className={`p-4 cursor-pointer ${isDragging ? "opacity-50" : ""}`}>
-            <img src={levels[currentLevel].image} alt="Puzzle" className="w-40" />
+          <div className="flex flex-col space-y-4">
+            {currentPuzzle.parts.map((part) => (
+              <PuzzlePiece key={part.id} id={part.id} image={part.image} />
+            ))}
           </div>
 
           <div
             ref={drop}
-            className={`ml-10 mt-6 p-10 border-2 border-dashed w-64 h-64 flex items-center justify-center ${
+            id="drop-area"
+            className={`relative w-[300px] h-[300px] flex items-center justify-center border-2 ${
               isOver ? "border-blue-500" : "border-gray-300"
             }`}
           >
-            İş sahəsi
+            <img
+              src={currentPuzzle.fullImage}
+              alt="Full Puzzle"
+              className="absolute w-full h-full opacity-30"
+            />
+
+            {placedParts.map((id) => {
+              const part = currentPuzzle.parts.find((p) => p.id === id);
+              return part ? (
+                <img
+                  key={id}
+                  src={part.image}
+                  alt="Placed Puzzle"
+                  className="w-[100px] absolute"
+                />
+              ) : null;
+            })}
           </div>
         </>
-      ) : (
-        // ✅ 3-cü Dərs: Başqa tapşırıq (Düymə sol tərəfdə olacaq)
-        <div className="flex flex-col items-start">
-          <p className="text-lg font-bold mb-2">Tapşırığı tamamla</p>
-          <button
-            className="px-4 py-2 bg-green-500 text-white rounded-md shadow-md"
-            onClick={() => setCompleted(true)}
-          >
-            Tamamlandı
-          </button>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 };

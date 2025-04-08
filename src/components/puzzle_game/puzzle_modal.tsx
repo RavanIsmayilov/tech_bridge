@@ -1,4 +1,8 @@
 import React from "react";
+import CloseIcon from "../../assets/icon/x icon.svg";
+import puzzle1 from "../../assets/images/puzzle1.svg";
+import puzzle2 from "../../assets/images/puzzle1.svg";
+import puzzle3 from "../../assets/images/puzzle1.svg";
 
 interface PuzzleModalProps {
   isOpen: boolean;
@@ -7,32 +11,61 @@ interface PuzzleModalProps {
   onNext: () => void;
 }
 
-const PuzzleModal: React.FC<PuzzleModalProps> = ({ isOpen, onClose, currentLevel, onNext }) => {
+const levels = [
+  { id: 1, image: puzzle1 },
+  { id: 2, image: puzzle2 },
+  { id: 3, image: puzzle3 },
+];
+
+const PuzzleModal: React.FC<PuzzleModalProps> = ({
+  isOpen,
+  onClose,
+  currentLevel,
+  onNext,
+}) => {
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+      className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-[#08244E] via-[#134074] to-[#669ee3] bg-opacity-80 backdrop-blur-lg"
       onClick={onClose}
     >
       <div
-        className="bg-white p-6 rounded-md shadow-lg text-center"
+        className="flex bg-white p-12 rounded-[37px] shadow-lg text-center justify-between items-center relative w-[900px]"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="absolute top-2 right-2 text-gray-600" onClick={onClose}>
-          ✖
-        </button>
-        <h3 className="text-xl font-bold text-blue-900">Təbriklər!</h3>
-        <p>Puzzle {currentLevel + 1} tamamladınız.</p>
-        <button
-          className="mt-4 px-4 py-2 bg-yellow-400 text-black rounded"
-          onClick={() => {
-            onClose();
-            onNext();
-          }}
-        >
-          Davam et
-        </button>
+        <img
+          src={levels[currentLevel].image}
+          alt="Puzzle Modal"
+          className="w-[300px] h-[300px]"
+        />
+
+        <div className="flex flex-col items-center gap-2">
+          <button
+            className="absolute top-2 right-2 border rounded-[50%] p-2 cursor-pointer"
+            onClick={onClose}
+          >
+            <img src={CloseIcon} alt="CloseIcon" />
+          </button>
+
+          <h3 className="text-[34px] font-bold text-[#08244E]">Təbriklər!</h3>
+          <p className="text-[30px] font-bold text-[#08244E]">
+            Puzzle {currentLevel + 1} tamamladınız.
+          </p>
+
+          <button
+            className="mt-8 px-6 py-3 bg-[#FDD446] text-[#08244E] font-bold text-[22px] rounded-[10px] cursor-pointer"
+            onClick={() => {
+              console.log("Davam et düyməsi basıldı!"); // Konsola yoxlama üçün əlavə edildi
+              onClose();
+              setTimeout(() => {
+                onNext();
+              }, 100);
+            }}
+          >
+            Davam et
+          </button>
+        </div>
       </div>
     </div>
   );
