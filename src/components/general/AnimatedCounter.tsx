@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NumberFlow, { continuous } from "@number-flow/react";
 
-const AnimatedCounter = ({ color }: { color: string }) => {
+const AnimatedCounter = () => {
   const [value, setValue] = useState(0);
   const target = 250;
 
@@ -32,7 +32,6 @@ const AnimatedCounter = ({ color }: { color: string }) => {
       value={value}
       locales="en-US"
       format={format}
-      className={`bg-${color} text-white font-bold text-[20px] py-3 px-3 rounded-full`}
     />
   );
 };

@@ -64,7 +64,6 @@ const HomePage: React.FC = () => {
         "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
       icon: "src/assets/images/quesimage3.svg", // Replace with actual icon path
       flex: "flex-col",
-      position: "pb-[100px]",
     },
     {
       number: "2",
@@ -72,8 +71,7 @@ const HomePage: React.FC = () => {
       description:
         "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
       icon: "src/assets/images/quesimage2.svg", // Replace with actual icon path
-      flex: "flex-col-reverse",
-      position: "pt-[100px]",
+      flex: "flex-col",
     },
     {
       number: "3",
@@ -82,7 +80,6 @@ const HomePage: React.FC = () => {
         "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
       icon: "src/assets/images/quesimage1.svg", // Replace with actual icon path
       flex: "flex-col",
-      position: "",
     },
   ];
 
@@ -249,15 +246,27 @@ const HomePage: React.FC = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center px-7">
               <span className="text-[38px] font-bold mr-7">Tələbələr:</span>
-              <AnimatedCounter color="[#ED8116]" />
+              <span
+                className={`bg-[#ED8116] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+              >
+                <AnimatedCounter />
+              </span>
             </div>
             <div className="flex items-center">
               <span className="text-[38px] font-bold mr-7">Valideynlər:</span>
-              <AnimatedCounter color="[#78D148]" />
+              <span
+                className={`bg-[#78D148] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+              >
+                <AnimatedCounter />
+              </span>
             </div>
             <div className="flex items-center">
               <span className="text-[38px] font-bold mr-7">Regionlar:</span>
-              <AnimatedCounter color="[#6BBDE5]" />
+              <span
+                className={`bg-[#6BBDE5] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+              >
+                <AnimatedCounter />
+              </span>
             </div>
           </div>
         </div>
@@ -356,51 +365,77 @@ const HomePage: React.FC = () => {
         </motion.div>
       </section>
 
-      <div className="pb-25 pt-10 px-8 h-[100vh] relative overflow-hidden">
-        <div className="absolute w-full inset-0 -z-10">
+      <div className="relative overflow-hidden max-w-[1660px] mx-auto h-[1000px] flex justify-center items-center">
+        <div className="absolute w-full -z-10 felx justify-center items-center">
           <img
-            src="src/assets/images/quessecbg.svg" // Replace with your wavy background image URL
+            src="src/assets/images/image 113.svg" // Replace with your wavy background image URL
             alt="Background"
-            className="object-cover w-full"
+            className="object-contain w-4/5 mx-auto"
           />
         </div>
 
-        <section className="relative text-white">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section className="relative text-white w-full h-full">
+          <div className="relative z-20 w-full h-full">
             {steps.map((step, index) => (
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.2 * index,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-                whileHover={{ scale: 1.05, rotate: 1 }}
                 key={index}
-                className={` flex items-center gap-8 p-8 rounded-lg justify-between ${step.position} ${step.flex} text-center`}
+                className={` flex gap-8  rounded-lg justify-between ${
+                  step.flex
+                } text-center w-full h-fit absolute ${
+                  index === 0
+                    ? "left-0 top-[43%]"
+                    : index === 1
+                    ? "left-[60%] top-[25%]"
+                    : "left-[45%] top-[60%]"
+                }`}
               >
-                <div className="mb-4 w-[371px] h-[358px] flex items-center justify-center p-6 bg-white rounded-full">
-                  <img
-                    src={step.icon}
-                    alt={step.title}
-                    className=" object-contain"
-                  />
-                </div>
-                <div className="flex flex-col items-start text-left ">
-                  <div className="flex gap-7 items-center">
-                    <h3 className="text-6xl bg-[#FDD446] w-[102px] h-[102px] rounded-full font-bold mb-4 flex items-center justify-center">
-                      {step.number}
-                    </h3>
-                    <h4 className="text-[#6C325B] font-bold text-[38px] mb-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.2 * index,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
+                  whileHover={{ scale: 1.05, rotate: 1 }}
+                  className={`flex ${
+                    index === 0
+                      ? "items-center"
+                      : index === 1
+                      ? "items-start"
+                      : "items-end"
+                  } w-1/4 ${index === 0 ? "flex-col-reverse" : "flex-col"}`}
+                >
+                  <div
+                    className={`flex gap-7 ${
+                      index === 0
+                        ? "justify-center"
+                        : index === 1
+                        ? "justify-start"
+                        : "justify-end"
+                    } w-full`}
+                  >
+                    <p
+                      className={`text-[#6C325B] font-bold text-[38px] mb-4 w-fit ${
+                        index === 0 && "mr-10"
+                      }`}
+                    >
                       {step.title}
-                    </h4>
+                    </p>
                   </div>
-                  <p className="text-[20px] text-[#08244E] font-medium tracking-[3px]">
+                  <p
+                    className={`text-lg text-[#08244E] font-medium tracking-[3px] ${
+                      index === 0
+                        ? "text-center"
+                        : index === 1
+                        ? "text-left"
+                        : "text-right"
+                    }`}
+                  >
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
