@@ -7,6 +7,7 @@ import Footer from "./shared/footer/footer";
 import ExpressPage from "./pages/express/express_page"
 import EducationPage from "./pages/education_page/education_page"
 import PuzzleGamePage from "./pages/puzzle_game/puzzle_game_page"
+import DragDropPage from "./pages/dragdrop/dragdrop_page"
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/puzzlegame" element={<PuzzleGamePage />} />
+					<Route path="/dragdrop" element={<DragDropPage />} />
           <Route
             path="/*"
             element={
