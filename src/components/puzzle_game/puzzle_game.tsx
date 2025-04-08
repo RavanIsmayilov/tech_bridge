@@ -12,8 +12,16 @@ interface PuzzleGameProps {
 }
 
 const levels = [
-  { id: 1, instruction: "Bloku klikləyin", parts: [{ id: 1, image: puzzlePart1 }] },
-  { id: 2, instruction: "Bloku hədəfə aparın", parts: [{ id: 1, image: puzzlePart1 }] },
+  {
+    id: 1,
+    instruction: "Bloku klikləyin",
+    parts: [{ id: 1, image: puzzlePart1 }],
+  },
+  {
+    id: 2,
+    instruction: "Bloku hədəfə aparın",
+    parts: [{ id: 1, image: puzzlePart1 }],
+  },
   {
     id: 3,
     instruction: "Puzzle parçalarını düzgün yerə yerləşdirin",
@@ -26,7 +34,10 @@ const levels = [
   },
 ];
 
-const PuzzleGame: React.FC<PuzzleGameProps> = ({ currentLevel, setCompleted }) => {
+const PuzzleGame: React.FC<PuzzleGameProps> = ({
+  currentLevel,
+  setCompleted,
+}) => {
   const [placedParts, setPlacedParts] = useState<number[]>([]);
   const currentPuzzle = levels[currentLevel];
 
@@ -36,8 +47,8 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({ currentLevel, setCompleted }) =
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "puzzle",
     drop: (item: { id: number }) => {
-      console.log("🔥 Düşən element:", item); // 🔥 Konsolda görünməlidir!
-      
+      // console.log("🔥 Düşən element:", item); // 🔥 Konsolda görünməlidir!
+
       setPlacedParts((prev) => {
         const newParts = [...prev, item.id];
         console.log("🧩 Yeni placedParts:", newParts); // 🔥 Bu da çıxmalıdır!
@@ -51,15 +62,18 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({ currentLevel, setCompleted }) =
       isOver: !!monitor.isOver(),
     }),
   }));
-  
-  console.log("📌 placedParts:", placedParts);
-  
-  
-  console.log("📌 placedParts:", placedParts);
-  
+
+  const openModal = () => {
+    setCompleted(true);
+  };
+
+  // console.log("📌 placedParts:", placedParts);
+
+  // console.log("📌 placedParts:", placedParts);
+
   return (
-    <div className="flex justify-around items-center w-full py-14">
-      {currentLevel === 3 ? (
+    <div className="flex justify-around items-center w-full h-full py-14">
+      {currentLevel === 2 ? (
         <>
           <div className="flex flex-col space-y-4">
             {currentPuzzle.parts.map((part) => (
@@ -77,7 +91,7 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({ currentLevel, setCompleted }) =
             <img
               src={currentPuzzle.fullImage}
               alt="Full Puzzle"
-              className="absolute w-full h-full opacity-30"
+              className="absolute w-full h-full opacity-30 object-cover"
             />
 
             {placedParts.map((id) => {
@@ -87,12 +101,16 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({ currentLevel, setCompleted }) =
                   key={id}
                   src={part.image}
                   alt="Placed Puzzle"
-                  className="w-[100px] absolute"
+                  className="absolute object-cover w-full h-full"
                 />
               ) : null;
             })}
           </div>
         </>
+      ) : currentLevel === 0 ? (
+        <div className="flex w-full h-full cursor-pointer" onClick={openModal}>
+          <img src={currentPuzzle.parts[0].image} alt="" />
+        </div>
       ) : null}
     </div>
   );

@@ -8,6 +8,10 @@ import RightScroolIcon from "../../assets/icon/Right Scroll- Button.svg";
 import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg";
 import Quotation from "../../assets/icon/quotation.svg";
 import HomeBg from "../../assets/images/home_bg.svg";
+import { motion } from "framer-motion";
+import { animation } from "../../utils/Animation";
+import { fadeInAnimationVariants } from "../../utils/FadeInAnimation";
+import AnimatedCounter from "../../components/general/AnimatedCounter";
 
 const HomePage: React.FC = () => {
   const partners = [
@@ -60,7 +64,6 @@ const HomePage: React.FC = () => {
         "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
       icon: "src/assets/images/quesimage3.svg", // Replace with actual icon path
       flex: "flex-col",
-      position: "pb-[100px]",
     },
     {
       number: "2",
@@ -68,8 +71,7 @@ const HomePage: React.FC = () => {
       description:
         "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
       icon: "src/assets/images/quesimage2.svg", // Replace with actual icon path
-      flex: "flex-col-reverse",
-      position: "pt-[100px]",
+      flex: "flex-col",
     },
     {
       number: "3",
@@ -78,7 +80,6 @@ const HomePage: React.FC = () => {
         "Kvant hesablamaları mürəkkəb hesablamaları paralel şəkildə yerinə yetirən kvant mexanikasına əsaslanan hesablama üsuludur kvant hesablamaları.",
       icon: "src/assets/images/quesimage1.svg", // Replace with actual icon path
       flex: "flex-col",
-      position: "",
     },
   ];
 
@@ -189,7 +190,10 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <section
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
         className="bg-[#6BBDE5] w-full h-[450px] md:h-[650px] bg-cover bg-center flex items-center justify-center md:justify-end px-6 py-8 md:py-12 md:px-[150px] shadow-lg relative"
         style={{ backgroundImage: `url(${HomeBg})` }}
       >
@@ -197,29 +201,42 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 mix-blend-multiply"></div>
 
         {/* Right Side: Text & Button */}
-        <div className="relative z-10 text-center md:text-center flex flex-col items-center md:items-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-10 text-center md:text-center flex flex-col items-center md:items-center"
+        >
           <h2 className="text-2xl md:text-[32px] font-bold text-[#08244E] leading-tight">
             Yaradıcılığın məktəbinə <br className="hidden md:block" /> buradan
             keç!
           </h2>
-          <div className="mt-4 flex flex-col items-center md:items-start gap-3">
-            <button className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center cursor-pointer">
-              Keçid et
-            </button>
-            <Link
-              to="#"
-              className="text-[#08244E] text-[18px] flex items-center space-x-2 hover:underline"
+          <div className="mt-4 flex flex-col justify-center items-center md:items-start gap-3">
+            <motion.button
+              whileTap={{ scale: 0.7 }}
+              className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center cursor-pointer"
             >
-              <img
-                src={WatchVideoIcon}
-                alt="WatchVideoIcon"
-                className="w-5 h-5"
-              />
-              <span className="">Videonu izlə</span>
-            </Link>
+              Keçid et
+            </motion.button>
+            <motion.div
+              whileTap={{ scale: 0.7 }}
+              className="flex justify-center items-center"
+            >
+              <Link
+                to="#"
+                className="text-[#08244E] text-[18px] flex items-center justify-center space-x-2 hover:underline"
+              >
+                <img
+                  src={WatchVideoIcon}
+                  alt="WatchVideoIcon"
+                  className="w-5 h-5"
+                />
+                <span className="">Videonu izlə</span>
+              </Link>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       <section className="bg-[#3B5D7D] py-4 px-8 h-[232px] flex items-center">
         <div className="w-full flex items-center text-white max-w-[1600px] mx-auto">
@@ -229,20 +246,26 @@ const HomePage: React.FC = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center px-7">
               <span className="text-[38px] font-bold mr-7">Tələbələr:</span>
-              <span className="bg-[#ED8116] text-white font-bold text-[20px] py-3 px-3 rounded-full">
-                250
+              <span
+                className={`bg-[#ED8116] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+              >
+                <AnimatedCounter />
               </span>
             </div>
             <div className="flex items-center">
               <span className="text-[38px] font-bold mr-7">Valideynlər:</span>
-              <span className="bg-[#78D148] text-white font-bold text-[20px] py-3 px-3 rounded-full">
-                250
+              <span
+                className={`bg-[#78D148] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+              >
+                <AnimatedCounter />
               </span>
             </div>
             <div className="flex items-center">
               <span className="text-[38px] font-bold mr-7">Regionlar:</span>
-              <span className="bg-[#6BBDE5] text-white font-bold text-[20px] py-3 px-3 rounded-full">
-                250
+              <span
+                className={`bg-[#6BBDE5] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+              >
+                <AnimatedCounter />
               </span>
             </div>
           </div>
@@ -258,7 +281,9 @@ const HomePage: React.FC = () => {
         <div className="flex w-full justify-between overflow-hidden">
           {/* Left Side (Image) */}
           <div className=" w-full p-4 h-full">
-            <img
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
               src="src/assets/images/aboutimage1.svg" // Replace with your image URL
               alt="About Image"
               className="absolute top-50 left-20 object-cover z-1 "
@@ -268,7 +293,9 @@ const HomePage: React.FC = () => {
               alt="About Image"
               className="absolute object-cover top-60 left-70 right-50 "
             />
-            <img
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
               src="src/assets/images/aboutimage2.svg" // Replace with your image URL
               alt="About Image"
               className="absolute bottom-0 left-120 object-cover z-2 "
@@ -300,11 +327,23 @@ const HomePage: React.FC = () => {
         <h2 className="text-6xl font-bold text-start text-[#08244E] mb-15">
           Bizim dərslərimiz
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-30">
+        <motion.div
+          variants={animation}
+          initial="initial"
+          whileInView="animate"
+          transition={{ duration: 1 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-30"
+        >
           {courses.map((course, index) => (
-            <div
+            <motion.div
+              initial="initial"
+              variants={fadeInAnimationVariants}
               key={index}
-              className={`relative rounded-[30px] p-15 text-[#08244E] font-verdana ${course.color} flex flex-col items-start`}
+              whileInView="animate"
+              viewport={{ once: true }}
+              custom={index}
+              whileHover={{ scale: 1.1 }}
+              className={`relative rounded-[30px] p-15 text-[#08244E] font-verdana ${course.color} flex flex-col items-start hover:shadow-md transition-shadow duration-200`}
             >
               <img
                 src={course.image}
@@ -315,51 +354,89 @@ const HomePage: React.FC = () => {
               <p className="text-[20px] mb-15 text-[#08244ECF] w-[400px]">
                 {course.description}
               </p>
-              <button className="bg-white italic text-[#08244E] py-2 px-7 rounded-[23px] text-[18px] font-bold hover:bg-gray-200 transition cursor-pointer">
+              <motion.button
+                whileTap={{ scale: 0.7 }}
+                className="bg-white italic text-[#08244E] py-2 px-7 rounded-[23px] text-[18px] font-bold hover:bg-gray-200 transition cursor-pointer"
+              >
                 Keçid et
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      <div className="pb-25 pt-10 px-8 h-[100vh] relative overflow-hidden">
-        <div className="absolute w-full inset-0 -z-10">
+      <div className="relative overflow-hidden max-w-[1660px] mx-auto h-[1000px] flex justify-center items-center">
+        <div className="absolute w-full -z-10 felx justify-center items-center">
           <img
-            src="src/assets/images/quessecbg.svg" // Replace with your wavy background image URL
+            src="src/assets/images/image 113.svg" // Replace with your wavy background image URL
             alt="Background"
-            className="object-cover w-full"
+            className="object-contain w-4/5 mx-auto"
           />
         </div>
 
-        <section className="relative text-white">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section className="relative text-white w-full h-full">
+          <div className="relative z-20 w-full h-full">
             {steps.map((step, index) => (
-              <div
+              <motion.div
                 key={index}
-                className={` flex items-center gap-8 p-8 rounded-lg justify-between ${step.position} ${step.flex} text-center`}
+                className={` flex gap-8  rounded-lg justify-between ${
+                  step.flex
+                } text-center w-full h-fit absolute ${
+                  index === 0
+                    ? "left-0 top-[43%]"
+                    : index === 1
+                    ? "left-[60%] top-[25%]"
+                    : "left-[45%] top-[60%]"
+                }`}
               >
-                <div className="mb-4 w-[371px] h-[358px] flex items-center justify-center p-6 bg-white rounded-full">
-                  <img
-                    src={step.icon}
-                    alt={step.title}
-                    className=" object-contain"
-                  />
-                </div>
-                <div className="flex flex-col items-start text-left ">
-                  <div className="flex gap-7 items-center">
-                    <h3 className="text-6xl bg-[#FDD446] w-[102px] h-[102px] rounded-full font-bold mb-4 flex items-center justify-center">
-                      {step.number}
-                    </h3>
-                    <h4 className="text-[#6C325B] font-bold text-[38px] mb-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.2 * index,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
+                  whileHover={{ scale: 1.05, rotate: 1 }}
+                  className={`flex ${
+                    index === 0
+                      ? "items-center"
+                      : index === 1
+                      ? "items-start"
+                      : "items-end"
+                  } w-1/4 ${index === 0 ? "flex-col-reverse" : "flex-col"}`}
+                >
+                  <div
+                    className={`flex gap-7 ${
+                      index === 0
+                        ? "justify-center"
+                        : index === 1
+                        ? "justify-start"
+                        : "justify-end"
+                    } w-full`}
+                  >
+                    <p
+                      className={`text-[#6C325B] font-bold text-[38px] mb-4 w-fit ${
+                        index === 0 && "mr-10"
+                      }`}
+                    >
                       {step.title}
-                    </h4>
+                    </p>
                   </div>
-                  <p className="text-[20px] text-[#08244E] font-medium tracking-[3px]">
+                  <p
+                    className={`text-lg text-[#08244E] font-medium tracking-[3px] ${
+                      index === 0
+                        ? "text-center"
+                        : index === 1
+                        ? "text-left"
+                        : "text-right"
+                    }`}
+                  >
                     {step.description}
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -371,13 +448,19 @@ const HomePage: React.FC = () => {
         </h2>
         <div className="flex flex-wrap justify-around items-center space-x-8">
           {partners.map((partner, index) => (
-            <div key={index} className="w-[200px] flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 * index }}
+              key={index}
+              className="w-[200px] flex flex-col items-center"
+            >
               <img
                 src={partner.image}
                 alt={partner.name}
                 className="w-[300px] mb-2"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
