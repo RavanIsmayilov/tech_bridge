@@ -83,6 +83,7 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({
           <div className="flex flex-col space-y-4">
             {currentPuzzle.parts.map((part) => (
               <PuzzlePiece
+                currentLevel={currentLevel}
                 key={part.id}
                 id={part.id}
                 image={"image" in part ? part.image : undefined}
@@ -124,7 +125,9 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({
                     left: "0px",
                     backgroundImage: `url(${currentPuzzle.fullImage})`,
                     backgroundSize: "100% 350px",
-                    backgroundPosition: `0 ${"backgroundY" in part ? part.backgroundY : "0%"}`,
+                    backgroundPosition: `0 ${
+                      "backgroundY" in part ? part.backgroundY : "0%"
+                    }`,
                     backgroundRepeat: "no-repeat",
                     opacity: 1,
                   }}

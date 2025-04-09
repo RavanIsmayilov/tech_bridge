@@ -8,6 +8,7 @@ interface PuzzlePieceProps {
   backgroundY?: string;
   useSlice?: boolean;
   dropped?: boolean;
+  currentLevel: number;
 }
 
 const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
@@ -17,6 +18,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
   backgroundY = "0%",
   useSlice = false,
   dropped,
+  currentLevel,
 }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "puzzle",
@@ -43,7 +45,9 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
       ref={drag}
       src={image}
       alt={`Puzzle piece ${id}`}
-      className={`cursor-pointer w-[100px] h-[100px] object-cover ${
+      className={`cursor-pointer ${
+        currentLevel === 1 ? "w-full h-[350px]" : "w-[100px] h-[100px]"
+      } object-cover ${
         isDragging ? "opacity-50" : dropped ? "opacity-100" : "opacity-100"
       }`}
     />
