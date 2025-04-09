@@ -1,25 +1,27 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import WatchVideoIcon from "../../assets/icon/Watch Video Button.svg";
-import MinisterIcon from "../../assets/icon/nazirliy icon.svg";
-import ArtiIcon from "../../assets/icon/arti icon.svg";
-import LeftScroolIcon from "../../assets/icon/Left Scroll- Button.svg";
-import RightScroolIcon from "../../assets/icon/Right Scroll- Button.svg";
-import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg";
-import Quotation from "../../assets/icon/quotation.svg";
-import HomeBg from "../../assets/images/home_bg.svg";
 import { motion } from "framer-motion";
 import { animation } from "../../utils/Animation";
 import { fadeInAnimationVariants } from "../../utils/FadeInAnimation";
+import WatchVideoIcon from "../../assets/icon/Watch Video Button.svg";
+import LeftScroolIcon from "../../assets/icon/flat-color-icons_previous.svg";
+import RightScroolIcon from "../../assets/icon/right-flat-color-icons_previous.svg";
+import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg";
+import Quotation from "../../assets/icon/quotation.svg";
+import HomeBg from "../../assets/images/home_bg.svg";
 import AnimatedCounter from "../../components/general/AnimatedCounter";
+import newsImage1 from "../../assets/images/image.svg";
+import newsImage2 from "../../assets/images/image (1).svg";
+import Image1 from "../../assets/images/pese-temayullu-sinifler.svg";
+import Image2 from "../../assets/images/GDG-EVENTS.svg";
+import Image3 from "../../assets/images/MediaMark.svg";
+import CalendarIcon from "../../assets/icon/calendar.svg";
 
 const HomePage: React.FC = () => {
   const partners = [
-    { name: "Elm və Təhsil Nazirliyi", image: MinisterIcon },
-    { name: "ARTİ", image: ArtiIcon },
-    { name: "Elm və Təhsil Nazirliyi", image: MinisterIcon },
-    { name: "ARTİ", image: ArtiIcon },
-    { name: "Elm və Təhsil Nazirliyi", image: MinisterIcon },
+    { name: "Elm və Təhsil Nazirliyi", image: Image1 },
+    { name: "ARTİ", image: Image2 },
+    { name: "Elm və Təhsil Nazirliyi", image: Image3 },
   ];
 
   const courses = [
@@ -85,51 +87,88 @@ const HomePage: React.FC = () => {
 
   const newsData = [
     {
-      title: "App Inventor Development 2024 Year in Review",
+      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
+      time: "20 Mart 2025",
       description:
-        "Hello everyone and welcome to our 2024 Year in Review for App Inventor development. First, let’s highlight our amazing user base (click here to read about some of the awesome projects they built in this year’s Global AI Hackathon). We saw significant growth in users and projects year over year...",
-      image: "",
+        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
+      image: [newsImage1, newsImage2],
     },
     {
-      title: "Rika Suzuki: Japanese University Student Turned Assistant",
+      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
+      time: "20 Mart 2025",
       description:
-        "Rika Suzuki is spreading the word about App Inventor in Japan by translating the platform into her native language",
-      image: "/news-image.png",
+        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
+      image: [newsImage1, newsImage2],
     },
     {
-      title: "Rika Suzuki: Japanese University Student Turned Assistant",
+      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
+      time: "20 Mart 2025",
       description:
-        "Rika Suzuki is spreading the word about App Inventor in Japan by translating the platform into her native language",
-      image: "/news-image.png",
+        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
+      image: [newsImage1, newsImage2],
     },
     {
-      title: "Rika Suzuki: Japanese University Student Turned Assistant",
+      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
+      time: "20 Mart 2025",
       description:
-        "Rika Suzuki is spreading the word about App Inventor in Japan by translating the platform into her native language",
-      image: "/news-image.png",
+        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
+      image: [newsImage1, newsImage2],
     },
     {
-      title: "Rika Suzuki: Japanese University Student Turned Assistant",
+      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
+      time: "20 Mart 2025",
       description:
-        "Rika Suzuki is spreading the word about App Inventor in Japan by translating the platform into her native language",
-      image: "/news-image.png",
+        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
+      image: [newsImage1, newsImage2],
     },
     {
-      title: "Rika Suzuki: Japanese University Student Turned Assistant",
+      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
+      time: "20 Mart 2025",
       description:
-        "Rika Suzuki is spreading the word about App Inventor in Japan by translating the platform into her native language",
-      image: "/news-image.png",
+        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
+      image: [newsImage1, newsImage2],
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState({
+    testimonialsIndex: 0,
+    newsDataIndex: 0,
+  });
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= newsData.length - 2 ? 0 : prev + 1));
+    setCurrentIndex((prev) => ({
+      ...prev,
+      newsDataIndex:
+        prev.newsDataIndex >= newsData.length - 2 ? 0 : prev.newsDataIndex + 1,
+    }));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? newsData.length - 2 : prev - 1));
+    setCurrentIndex((prev) => ({
+      ...prev,
+      newsDataIndex:
+        prev.newsDataIndex === 0 ? newsData.length - 2 : prev.newsDataIndex - 1,
+    }));
+  };
+
+  const testimonialsNextSlide = () => {
+    setCurrentIndex((prev) => ({
+      ...prev,
+      testimonialsIndex:
+        prev.testimonialsIndex === testimonials.length - 1
+          ? 0
+          : prev.testimonialsIndex + 1,
+    }));
+  };
+
+  const testimonialsPrevSlide = () => {
+    setCurrentIndex((prev) => ({
+      ...prev,
+      testimonialsIndex:
+        prev.testimonialsIndex === 0
+          ? testimonials.length - 1
+          : prev.testimonialsIndex - 1,
+    }));
   };
 
   const testimonials = [
@@ -170,23 +209,6 @@ const HomePage: React.FC = () => {
       quotation: Quotation,
     },
   ];
-
-  const [index, setIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const scrollToIndex = (i: number) => {
-    if (containerRef.current) {
-      const cardWidth = containerRef.current.offsetWidth / 3; // Показываем 3 карточки
-      const scrollAmount = i * cardWidth;
-
-      containerRef.current.scrollTo({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-
-      setIndex(i);
-    }
-  };
 
   return (
     <>
@@ -453,118 +475,166 @@ const HomePage: React.FC = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.2 * index }}
               key={index}
-              className="w-[200px] flex flex-col items-center"
+              className="w-[600px] h-full flex flex-col items-center"
             >
               <img
                 src={partner.image}
                 alt={partner.name}
-                className="w-[300px] mb-2"
+                className="w-[350px] h-[150px] mb-2 "
               />
             </motion.div>
           ))}
         </div>
       </section>
 
-      <section className="text-center py-8">
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="text-left py-8 w-[80%] flex flex-col mx-auto"
+      >
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-12">
           Xəbərlər & Tədbirlər
         </h2>
         <div className="relative flex items-center justify-center overflow-hidden w-full ">
           <button
-            className="absolute left-60 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
+            className="absolute left-0 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
             onClick={prevSlide}
           >
             <img className="w-14" src={LeftScroolIcon} alt="LeftScroolIcon" />
           </button>
 
           {/* Slider */}
-          <div className="overflow-hidden w-[90%] md:w-[60%] ">
+          <div className="overflow-hidden w-[90%]">
             <div
-              className="flex transition-transform duration-500 ease-in-out gap-6"
-              style={{ transform: `translateX(-${currentIndex * 52}%)` }}
+              className="flex transition-transform duration-500 ease-in-out gap-[100px]"
+              style={{
+                transform: `translateX(-${currentIndex.newsDataIndex * 52}%)`,
+              }}
             >
               {newsData.map((news, index) => (
                 <div
                   key={index}
-                  className="border-2 h-[450px] border-[#C068A6] rounded-[30px] p-6 w-[75%] lg:w-[45%] flex-shrink-0 shadow-lg"
+                  className="border-2 h-[450px] flex justify-between border-[#FE93A6] bg-[#FDF6F6] rounded-[30px] p-6 w-[75%] lg:w-[45%] flex-shrink-0 shadow-lg"
                 >
-                  <h3 className="font-bold text-lg text-left">{news.title}</h3>
-                  <p className="text-black mt-2 text-left">
-                    {news.description}
-                  </p>
-                  {news.image && (
-                    <img
-                      src={news.image}
-                      alt="news"
-                      className="mt-4 rounded-lg"
-                    />
-                  )}
-                  <button className="flex self-end mt-12 bg-[#C068A6] text-white px-4 py-2 rounded-full text-sm cursor-pointer">
-                    See all...
-                  </button>
+                  <div className="w-1/2">
+                    <h3 className="font-bold text-left text-[#6C325B] text-[26px]">
+                      {news.title}
+                    </h3>
+                    <div className="flex gap-2 items-center">
+                      <img
+                        className="w-8 h-6"
+                        src={CalendarIcon}
+                        alt="calendar icon"
+                      />
+                      <span className="text-[#000000] text-[20px] font-[600]">
+                        {news.time}
+                      </span>
+                    </div>
+                    <p className="text-black mt-2 text-left w-3/4 lg:w-full">
+                      {news.description}
+                    </p>
+                  </div>
+                  <div className="w-1/2 relative">
+                    {news.image &&
+                      news.image.map((img, index) => (
+                        <img
+                          src={img}
+                          key={index}
+                          alt="news"
+                          className={`mt-4 rounded-lg ${
+                            index === 0
+                              ? "w-[200px] h-[200px] right-0"
+                              : "w-[210px] top-[40%] left-[-20%]"
+                          } absolute`}
+                        />
+                      ))}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
           <button
-            className="absolute right-60 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
+            className="absolute right-0 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
             onClick={nextSlide}
           >
             <img className="w-14" src={RightScroolIcon} alt="RightScroolIcon" />
           </button>
         </div>
-      </section>
+      </motion.section>
 
-      <div className="overflow-hidden overscroll-none w-full max-w-4xl mx-auto p-5">
-        <div
-          className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          ref={containerRef}
-        >
-          {testimonials.map((testimonial, idx) => (
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="py-20 w-[80%] flex flex-col mx-auto"
+      >
+        <h2 className="text-[42px] font-bold text-[#C068A6] mb-12 text-center">
+          Rəylər
+        </h2>
+        <div className="relative flex items-center justify-center overflow-hidden w-full ">
+          <button
+            className="absolute left-0 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
+            onClick={testimonialsPrevSlide}
+          >
+            <img className="w-14" src={LeftScroolIcon} alt="LeftScroolIcon" />
+          </button>
+
+          {/* Slider */}
+          <div className="overflow-hidden w-[90%]">
             <div
-              key={idx}
-              className="w-[80%] sm:w-[272px] h-[280px] bg-[#F3AA4B] px-5 rounded-[18px] shadow-md snap-start flex-shrink-0 overflow-hidden"
+              className="flex transition-transform duration-500 ease-in-out gap-[100px] ml-[35px]"
+              style={{
+                transform: `translateX(-${
+                  currentIndex.testimonialsIndex * 52
+                }%)`,
+              }}
             >
-              <img
-                src={Quotation}
-                alt="Quotation"
-                className="w-[60px] h-[60px] ml-[180px]"
-              />
-              <div className="flex justify-around items-center">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-16 h-16 rounded-full "
-                />
-                <h3 className="text-center font-[600] text-[18px] text-white">
-                  {testimonial.name}
-                </h3>
-              </div>
+              {testimonials.map((testimonial, index) => {
+                const isActive = index === currentIndex.testimonialsIndex;
+                return (
+                  <div
+                    key={index}
+                    className="relative flex flex-col items-center"
+                  >
+                    <div className="absolute top-0 z-10">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-40 rounded-full object-cover shadow-lg"
+                      />
+                    </div>
 
-              <div className="mt-[20px] ml-[10px]">
-                <p className="text-left text-[13px] text-white font-[Arial]">
-                  {testimonial.text}
-                </p>
-              </div>
+                    {/* Kartın özü */}
+                    <div
+                      className={`mt-[40px] pt-[80px] border h-[350px] flex flex-col items-center justify-center 
+      border-[#FE93A6] rounded-[30px] p-6 w-[75%] lg:w-[600px] flex-shrink-0 
+      shadow-lg transition-all duration-300 ${
+        isActive ? "bg-[#FFF7C2]" : "bg-[#E6FAFF]"
+      }`}
+                    >
+                      <p className="text-[#6C325B] font-semibold text-[26px] mt-8">
+                        {testimonial.name}
+                      </p>
+                      <span className="text-[20px] text-[#08244E] text-center mt-2">
+                        "{testimonial.text}"
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Nöqtələr üçün Dots */}
-        <div className="flex justify-center gap-2 mt-4">
-          {testimonials.slice(0, testimonials.length - 2).map((_, dotIndex) => (
-            <button
-              key={dotIndex}
-              onClick={() => scrollToIndex(dotIndex)}
-              className={`w-3 h-3 rounded-full cursor-pointer ${
-                index === dotIndex ? "bg-blue-500" : "bg-gray-400"
-              }`}
-            />
-          ))}
+          <button
+            className="absolute right-0 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
+            onClick={testimonialsNextSlide}
+          >
+            <img className="w-14" src={RightScroolIcon} alt="RightScroolIcon" />
+          </button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
