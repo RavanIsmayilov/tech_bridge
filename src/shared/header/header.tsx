@@ -29,7 +29,7 @@ const Header: React.FC = () => {
         transition={{ duration: 0.5 }}
         className={`${
           scroll > 0 ? "bg-white" : "bg-transparent"
-        } max-w-[1600px] mx-auto flex justify-between gap-8 items-center fixed w-full rounded-xl px-2 py-4 ${
+        } max-w-[1600px] mx-auto flex justify-between gap-8 items-center fixed w-[80%] rounded-xl px-2 py-4 ${
           scroll > 0 ? "mt-24" : "mt-0"
         } z-[9999] transition-all duration-200 ${
           scroll > 0 ? "shadow-md" : "shadow-none"

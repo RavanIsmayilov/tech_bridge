@@ -5,15 +5,6 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#99D1ED] flex items-center justify-center h-[250px] w-full">
       <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row w-full justify-center items-center md:items-start gap-10">
-        {/* Sol blok */}
-        <div className="bg-[#D9D9D9] rounded-[14px] shadow-md p-6 w-full md:w-[300px] text-center">
-          <h3 className="text-[#08244E] font-bold text-xl">Sualın var?</h3>
-          <p className="text-[#08244E] mt-2">Gəl görüşək!</p>
-          <button className="bg-[#08244E] text-white rounded-full px-6 py-2 mt-4 text-lg font-medium shadow-md w-full">
-            Sualını yaz
-          </button>
-        </div>
-
         {/* Sağ blok */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 w-full max-w-3xl text-center">
           <div>
