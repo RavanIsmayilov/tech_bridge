@@ -490,7 +490,7 @@ const HomePage: React.FC = () => {
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 1 }}
         className="text-left py-8 w-[80%] flex flex-col mx-auto"
       >
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-12">
@@ -567,7 +567,7 @@ const HomePage: React.FC = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 1 }}
         className="py-20 w-[80%] flex flex-col mx-auto"
       >
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-12 text-center">
