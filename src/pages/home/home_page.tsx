@@ -16,6 +16,8 @@ import Image1 from "../../assets/images/pese-temayullu-sinifler.svg";
 import Image2 from "../../assets/images/GDG-EVENTS.svg";
 import Image3 from "../../assets/images/MediaMark.svg";
 import CalendarIcon from "../../assets/icon/calendar.svg";
+import TeamImg from "../../assets/images/0485bf06131df4f28e5199d075b4f453.jpeg";
+import BlobImg from "../../assets/images/Vector.svg";
 
 const HomePage: React.FC = () => {
   const partners = [
@@ -212,6 +214,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      {/* Hero section */}
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -260,14 +263,15 @@ const HomePage: React.FC = () => {
         </motion.div>
       </motion.section>
 
+      {/* Info section */}
       <section className="bg-[#3B5D7D] py-4 px-8 h-[232px] flex items-center">
         <div className="w-full flex items-center text-white max-w-[1600px] mx-auto">
-          <div className="text-[42px] font-bold border-r-2 pr-7 h-[110px] flex items-center text-center">
+          <div className="text-[36px] font-bold border-r-2 pr-7 h-[110px] flex items-center text-center">
             Burada rəqəmlər danışır:
           </div>
           <div className="flex items-center space-x-6">
             <div className="flex items-center px-7">
-              <span className="text-[38px] font-bold mr-7">Tələbələr:</span>
+              <span className="text-[30px] font-bold mr-7">Tələbələr:</span>
               <span
                 className={`bg-[#ED8116] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
               >
@@ -275,7 +279,7 @@ const HomePage: React.FC = () => {
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-[38px] font-bold mr-7">Valideynlər:</span>
+              <span className="text-[30px] font-bold mr-7">Valideynlər:</span>
               <span
                 className={`bg-[#78D148] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
               >
@@ -283,7 +287,7 @@ const HomePage: React.FC = () => {
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-[38px] font-bold mr-7">Regionlar:</span>
+              <span className="text-[30px] font-bold mr-7">Regionlar:</span>
               <span
                 className={`bg-[#6BBDE5] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
               >
@@ -294,7 +298,13 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative flex items-center justify-between pt-[120px] pb-[200px] px-8">
+      {/* Layihe haqqinda */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative flex items-center justify-between pt-[120px] pb-[200px] px-8"
+      >
         <img
           className="absolute top-0 left-0"
           src="src/assets/images/aboutframeup.svg"
@@ -343,8 +353,64 @@ const HomePage: React.FC = () => {
           src="src/assets/images/aboutframedown.svg"
           alt=""
         />
-      </section>
+      </motion.section>
 
+      {/* Komandamiz */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative py-16 px-6 md:px-24 bg-white overflow-hidden"
+      >
+        {/* Dekor elementləri */}
+        <div className="absolute top-10 left-0 w-40 h-40 bg-[#D6E6FF] rounded-br-[60px] z-0"></div>
+        <div className="absolute bottom-10 left-1/3 w-[120px] h-[120px] border-[2px] border-[#6F74DD] border-dashed rounded-[20px] z-0"></div>
+        <div className="absolute bottom-20 right-10 w-16 h-16 border-[2px] border-yellow-400 rotate-45 z-0"></div>
+
+        {/* 🔵 Əlavə edilən dekorativ blob şəkli */}
+        <img
+          src={BlobImg} // şəkil yolunu uyğun dəyiş
+          alt="Decor"
+          className="absolute bottom-0 left-0 w-[342px] h-[304px] z-0"
+        />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10">
+          {/* Sol tərəf - Mətn */}
+          <div className="lg:w-1/2 flex justify-center items-center flex-col">
+            <div className="w-full flex justify-start items-start mb-20 ml-56">
+              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#6C325B] mb-6 text-left">
+                Komandamız
+              </h2>
+            </div>
+            <p className="text-[#08244E] text-[18px] leading-relaxed max-w-md mx-auto lg:mx-0 text-center">
+              Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
+              onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
+              digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
+              gələcəyin texnologiyalarını kəşf edin və innovasiyanın bir hissəsi
+              olun!
+            </p>
+          </div>
+
+          {/* Sağ tərəf - Şəkil + Slider */}
+          <div className="lg:w-1/2">
+            <div className="border-[2px] border-[#D7BFFF] rounded-2xl p-3">
+              <img
+                src={TeamImg} // şəkil yolunu uyğunlaşdır
+                alt="Komanda"
+                className="rounded-xl w-full h-auto object-cover"
+              />
+            </div>
+            <div className="flex justify-center gap-2 mt-4">
+              <span className="w-2.5 h-2.5 bg-black rounded-full"></span>
+              <span className="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
+              <span className="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/*  Bizim dərslərimiz */}
       <section className="py-25 px-8 max-w-[1600px] mx-auto">
         <h2 className="text-6xl font-bold text-start text-[#08244E] mb-15">
           Bizim dərslərimiz
@@ -464,29 +530,39 @@ const HomePage: React.FC = () => {
         </section>
       </div>
 
-      <section className="text-center py-8">
+      {/* Akademik partnyorlar */}
+      <section className="text-center py-8 overflow-hidden">
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-10">
           Akademik partnyorlar
         </h2>
-        <div className="flex flex-wrap justify-around items-center space-x-8">
-          {partners.map((partner, index) => (
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 * index }}
-              key={index}
-              className="w-[600px] h-full flex flex-col items-center"
-            >
-              <img
-                src={partner.image}
-                alt={partner.name}
-                className="w-[350px] h-[150px] mb-2 "
-              />
-            </motion.div>
-          ))}
+
+        <div className="relative w-full overflow-hidden">
+          <motion.div
+            className="flex gap-16 w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 20,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {[...partners, ...partners].map((partner, index) => (
+              <div
+                key={index}
+                className="w-[600px] flex flex-col items-center flex-shrink-0"
+              >
+                <img
+                  src={partner.image}
+                  alt={partner.name}
+                  className="w-[350px] h-[150px] mb-2 object-contain"
+                />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
+      {/* Xəbərlər & Tədbirlər */}
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -564,6 +640,7 @@ const HomePage: React.FC = () => {
         </div>
       </motion.section>
 
+      {/* Rəylər */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
