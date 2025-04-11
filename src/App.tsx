@@ -9,18 +9,16 @@ import ExpressPage from "./pages/express/express_page";
 import EducationPage from "./pages/education_page/education_page";
 import PuzzleGamePage from "./pages/puzzle_game/puzzle_game_page";
 
+import DragDropPage from "./pages/dragdrop/dragdrop_page";
 // import ExpressPage from "./pages/express/express_page"
 // import EducationPage from "./pages/education_page/education_page"
 // import PuzzleGamePage from "./pages/puzzle_game/puzzle_game_page"
- 
-import DragDropPage from "./pages/dragdrop/dragdrop_page"
  
 
 import DonatePage from "./pages/donate_page/donate_page";
 import DonateFormPage from "./pages/donate_page/donate_form_page";
 import RegisterPage from "./pages/register/register_page";
 import LoginPage from "./pages/login/login_page";
- 
 
 function App() {
   return (
@@ -28,7 +26,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/puzzlegame" element={<PuzzleGamePage />} />
-					<Route path="/dragdrop" element={<DragDropPage />} />
+          <Route path="/dragdrop" element={<DragDropPage />} />
           <Route
             path="/*"
             element={

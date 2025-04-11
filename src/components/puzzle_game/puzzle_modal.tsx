@@ -1,9 +1,8 @@
 import React from "react";
 import CloseIcon from "../../assets/icon/x icon.svg";
 import puzzle1 from "../../assets/images/puzzle1.svg";
-import puzzle2 from "../../assets/images/puzzle1.svg";
-import puzzle3 from "../../assets/images/puzzle1.svg";
-
+import puzzle2 from "../../assets/images/puzzle-2.svg";
+import puzzle3 from "../../assets/images/qiz-qalasi.png";
 interface PuzzleModalProps {
   isOpen: boolean;
   onClose: () => void;
