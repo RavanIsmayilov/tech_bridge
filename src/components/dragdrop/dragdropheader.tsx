@@ -49,7 +49,7 @@ const DragDropHeader: React.FC<DragDropHeaderProps> = ({ currentLevel, goToLevel
 			</div>
 
 			<div className="w-full mt-[20px] h-[50px] bg-[#08244E] flex items-center justify-between">
-				<div className="w-[350px] h-full border-r-2 border-[#FDD446] flex justify-center items-center font-[600]">
+				<div className="w-[350px] h-full border-r-4 border-[#FDD446] flex justify-center items-center font-[600]">
 					<h2 className="text-white text-[25px]">Bloklar</h2>
 				</div>
 				<div className="flex w-[1000px] text-center justify-center">
