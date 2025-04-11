@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { animation } from "../../utils/Animation";
 import { fadeInAnimationVariants } from "../../utils/FadeInAnimation";
@@ -211,6 +211,8 @@ const HomePage: React.FC = () => {
       quotation: Quotation,
     },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -443,6 +445,7 @@ const HomePage: React.FC = () => {
                 {course.description}
               </p>
               <motion.button
+                onClick={() => navigate("/educationpage")}
                 whileTap={{ scale: 0.7 }}
                 className="bg-white italic text-[#08244E] py-2 px-7 rounded-[23px] text-[18px] font-bold hover:bg-gray-200 transition cursor-pointer"
               >
