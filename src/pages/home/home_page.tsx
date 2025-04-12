@@ -240,6 +240,7 @@ const HomePage: React.FC = () => {
           </h2>
           <div className="mt-4 flex flex-col justify-center items-center md:items-start gap-3">
             <motion.button
+              onClick={() => navigate("/express")}
               whileTap={{ scale: 0.7 }}
               className="bg-[#FDD446] text-[#08244E] px-6 py-2 rounded-full text-lg font-bold shadow-md hover:bg-yellow-500 transition w-40 text-center cursor-pointer"
             >

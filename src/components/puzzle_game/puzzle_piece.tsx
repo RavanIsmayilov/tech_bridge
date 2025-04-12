@@ -6,6 +6,7 @@ interface PuzzlePieceProps {
   image?: string;
   fullImage?: string;
   backgroundY?: string;
+  backgroundX?: string;
   useSlice?: boolean;
   dropped?: boolean;
   currentLevel: number;
@@ -16,6 +17,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
   image,
   fullImage,
   backgroundY = "0%",
+  backgroundX = "0%",
   useSlice = false,
   dropped,
   currentLevel,
@@ -27,15 +29,17 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
       isDragging: !!monitor.isDragging(),
     }),
   }));
-
+  console.log(fullImage);
   return useSlice && fullImage ? (
     <div
       ref={drag}
-      className="w-[100px] h-[100px] border cursor-pointer"
+      className={`${
+        currentLevel === 3 ? "w-[181px] h-[350px]" : "w-[100px] h-[100px]"
+      } border cursor-pointer`}
       style={{
         backgroundImage: `url(${fullImage})`,
-        backgroundSize: `100px 300px`,
-        backgroundPosition: `0 ${backgroundY}`,
+        backgroundSize: `${backgroundX ? "200% 100%" : "100% 300%"}`,
+        backgroundPosition: `${backgroundX || "0%"} ${backgroundY}`,
         backgroundRepeat: "no-repeat",
         opacity: isDragging ? 0.5 : dropped ? 1 : 1,
       }}
@@ -50,6 +54,9 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
       } object-cover ${
         isDragging ? "opacity-50" : dropped ? "opacity-100" : "opacity-100"
       }`}
+      style={{
+        clipPath: currentLevel === 3 ? "inset(0 50% 0 0)" : "none",
+      }}
     />
   );
 };
