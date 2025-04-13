@@ -23,6 +23,12 @@ const DragDropPage: React.FC = () => {
 	const [currentLevel, setCurrentLevel] = useState(0);
 	const [completed, setCompleted] = useState(false);
 	const [commands, setCommands] = useState<string[]>([]);
+	const [dovrsay, setDovrSay] = useState<number | string | null>(null);
+
+	const handleSelect = (value: number | string) => {
+		setDovrSay(value);
+		setDropdownOpen(false); // Seçimdən sonra dropdown-u bağlamaq üçün
+	};
 
 	const nextLevel = () => {
 		if (currentLevel < levels.length - 1) {
@@ -46,7 +52,7 @@ const DragDropPage: React.FC = () => {
 		{ id: 1, text: "Şimal", arrow: <ImArrowUp /> },
 		{ id: 2, text: "Cənub", arrow: <ImArrowDown /> },
 		{ id: 3, text: "Şərq", arrow: <ImArrowRight /> },
-		{ id: 4, text: "Qərb", arrow: <ImArrowLeft /> }, 
+		{ id: 4, text: "Qərb", arrow: <ImArrowLeft /> },  
 	];
 
 	const handleDragStart = (e: React.DragEvent<HTMLDivElement>, id: any) => {
@@ -253,20 +259,17 @@ const DragDropPage: React.FC = () => {
 
 						{/* Dropdown Trigger */}
 						<div className="absolute text-[15px] text-[#9cc5ff] top-3.5 right-5.5 cursor-pointer bg-[#ffffff] pl-2.5 pr-2.5 rounded-4xl" onClick={() => setDropdownOpen(!dropdownOpen)}>
-							seç... ▼
+							{dovrsay === null ? "Sec" : dovrsay}
 						</div>
 
 						{/* Dropdown Menu */}
 						{dropdownOpen && (
 							<div className="absolute rounded-2xl top-11 right-7.5 bg-white border border-gray-300 shadow-lg">
 								{[...Array(10).keys()].map(num => (
-									<div key={num} className="flex rounded-2xl justify-center py-2 hover:bg-gray-200 cursor-pointer">
+									<div onClick={() => handleSelect(num + 1)} key={num} className="flex rounded-2xl justify-center py-2 hover:bg-gray-200 cursor-pointer">
 										{num + 1}
 									</div>
 								))}
-								<div className="px-2 py-2 hover:bg-gray-200 cursor-pointer">
-									Daim
-								</div>
 							</div>
 						)}
 					</div>

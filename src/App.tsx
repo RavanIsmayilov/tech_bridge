@@ -21,8 +21,13 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <Router>
         <Routes>
+          {/* Header və Footer olmayan səhifələr */}
           <Route path="/puzzlegame" element={<PuzzleGamePage />} />
           <Route path="/dragdrop" element={<DragDropPage />} />
+          <Route path="/registerpage" element={<RegisterPage />} />
+          <Route path="/loginpage" element={<LoginPage />} />
+
+          {/* Header və Footer olan səhifələr */}
           <Route
             path="/*"
             element={
@@ -34,8 +39,6 @@ function App() {
                   <Route path="/express" element={<ExpressPage />} />
                   <Route path="/donatepage" element={<DonatePage />} />
                   <Route path="/donateformpage" element={<DonateFormPage />} />
-                  <Route path="/registerpage" element={<RegisterPage />} />
-                  <Route path="/loginpage" element={<LoginPage />} />
                 </Routes>
                 <Footer />
               </>
@@ -46,5 +49,6 @@ function App() {
     </DndProvider>
   );
 }
+
 
 export default App;
