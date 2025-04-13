@@ -1,46 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import PuzzlePiece from "./puzzle_piece";
-import puzzlePart1 from "../../assets/images/puzzle1.svg";
-import puzzle2 from "../../assets/images/puzzle-2.svg";
-import puzzle3 from "../../assets/images/qiz-qalasi.png";
+import { useSearchParams } from "react-router-dom";
 
 interface PuzzleGameProps {
   currentLevel: number;
   setCompleted: (completed: boolean) => void;
+  levels: LevelsType[];
 }
 
-const levels = [
-  {
-    id: 1,
-    instruction: "Bloku klikləyin",
-    parts: [{ id: 1, image: puzzlePart1 }],
-    fullImage: puzzlePart1,
-  },
-  {
-    id: 2,
-    instruction: "Bloku hədəfə aparın",
-    parts: [{ id: 1, image: puzzle2 }],
-    fullImage: puzzle2,
-  },
-  {
-    id: 3,
-    instruction: "Puzzle parçalarını düzgün yerə yerləşdirin",
-    parts: [
-      { id: 1, backgroundY: "0%" }, // Yuxarı
-      { id: 2, backgroundY: "33.33%" }, // Orta
-      { id: 3, backgroundY: "66.66%" }, // Aşağı
-    ],
-    fullImage: puzzle3,
-  },
-];
+interface LevelsType {
+  id: number;
+  instruction: string;
+  parts: {
+    id: number;
+    image?: string;
+    backgroundY?: string;
+    backgroundX?: string;
+  }[];
+  fullImage: string;
+}
 
 const PuzzleGame: React.FC<PuzzleGameProps> = ({
   currentLevel,
   setCompleted,
+  levels,
 }) => {
   const [placedParts, setPlacedParts] = useState<number[]>([]);
   const currentPuzzle = levels[currentLevel];
+  const [searchParams, _] = useSearchParams();
 
   useEffect(() => {
     setPlacedParts([]);
@@ -75,28 +63,28 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({
   return (
     <div
       className={`flex ${
-        currentLevel === 0 ? "justify-start" : "justify-around"
+        Number(searchParams.get("levels")) === 1
+          ? "justify-start"
+          : "justify-around"
       } items-center w-full h-full py-14`}
     >
-      {currentLevel >= 1 && currentLevel <= 3 ? (
+      {currentLevel >= 1 && currentLevel <= 5 ? (
         <div className="flex flex-col space-y-4">
           <div className="flex flex-col space-y-4">
-            {currentPuzzle.parts.map((part) => (
-              <PuzzlePiece
-                currentLevel={currentLevel}
-                key={part.id}
-                id={part.id}
-                image={"image" in part ? part.image : undefined}
-                fullImage={
-                  "backgroundY" in part ? currentPuzzle.fullImage : undefined
-                }
-                backgroundY={
-                  "backgroundY" in part ? part.backgroundY : undefined
-                }
-                useSlice={currentLevel === 2}
-                dropped={placedParts.includes(part.id)}
-              />
-            ))}
+            {currentPuzzle.parts
+              .filter((part) => !placedParts.includes(part.id)) // yalnız düşməmiş hissələri göstər
+              .map((part) => (
+                <PuzzlePiece
+                  currentLevel={currentLevel}
+                  key={part.id}
+                  id={part.id}
+                  image={part.image}
+                  fullImage={currentPuzzle.fullImage}
+                  backgroundY={"backgroundY" in part ? part.backgroundY : ""}
+                  useSlice={!!(part.backgroundY || part.backgroundX)}
+                  dropped={false}
+                />
+              ))}
           </div>
         </div>
       ) : null}
@@ -108,23 +96,83 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({
         }`}
       >
         {/* Drop olunan hissələrin overlay-i */}
-        {currentLevel === 2 ? (
+        {currentLevel === 3 ? (
+          <>
+            {/* Drop olunan hissələr — solda yerləşdirilsin */}
+            {currentPuzzle.parts.map((part) =>
+              placedParts.includes(part.id) ? (
+                <div
+                  key={part.id}
+                  className="absolute h-full"
+                  style={{
+                    width: `${100 / currentPuzzle.parts.length}%`,
+                    left: `${
+                      "backgroundX" in part
+                        ? (parseFloat(part.backgroundX || "0") / 100) * 100
+                        : 0
+                    }%`,
+                    top: "0px",
+                    backgroundImage: `url(${currentPuzzle.fullImage})`,
+                    backgroundSize: `200% 100%`,
+                    backgroundPosition: `${
+                      "backgroundX" in part ? part.backgroundX : "0%"
+                    } 0`,
+                    backgroundRepeat: "no-repeat",
+                    opacity: 1,
+                    // 💡 SAĞ YOX, SOL göstərilsin
+                    clipPath: "inset(0 50% 0 0)",
+                  }}
+                />
+              ) : null
+            )}
+
+            {/* Arxa fon şəkilləri: sol 30%, sağ 100% */}
+            {/* Sol hissə — opacity 0.3 */}
+            {/* Sol hissə — conditional opacity */}
+            <img
+              src={currentPuzzle.fullImage}
+              alt="Left Half"
+              className="absolute w-full h-full object-cover transition-opacity duration-300"
+              style={{
+                clipPath: "inset(0 50% 0 0)", // sol yarı
+                opacity:
+                  placedParts.length > 0
+                    ? 1 // Əgər hissə yerləşdirilibsə, tam görün
+                    : 0.3, // İstəsən burada 0.3 edə bilərsən ilkin vəziyyət üçün
+              }}
+            />
+
+            {/* Sağ hissə — conditional opacity */}
+            <img
+              src={currentPuzzle.fullImage}
+              alt="Right Half"
+              className="absolute w-full h-full object-cover transition-opacity duration-300"
+              style={{
+                clipPath: "inset(0 0 0 50%)", // sağ yarı
+                opacity:
+                  placedParts.length > 0
+                    ? 1 // Əgər hissə yerləşdirilibsə, tam görün
+                    : 1, // İstəsən bu hissə zəif görünə bilər əvvəlcə
+              }}
+            />
+          </>
+        ) : currentLevel === 2 ? (
           <>
             {currentPuzzle.parts.map((part) =>
               placedParts.includes(part.id) ? (
                 <div
                   key={part.id}
-                  className="absolute w-full h-[116.66px]" // 350px / 3 təxminən
+                  className="absolute w-full"
                   style={{
-                    top:
-                      "backgroundY" in part && part.backgroundY === "0%"
-                        ? "0px"
-                        : "backgroundY" in part && part.backgroundY === "33.33%"
-                        ? "116.66px"
-                        : "230px",
+                    height: `${350 / currentPuzzle.parts.length}px`,
+                    top: `${
+                      "backgroundY" in part
+                        ? (parseFloat(part.backgroundY || "0") / 100) * 350
+                        : 0
+                    }px`,
                     left: "0px",
                     backgroundImage: `url(${currentPuzzle.fullImage})`,
-                    backgroundSize: "100% 350px",
+                    backgroundSize: `100% 350px`,
                     backgroundPosition: `0 ${
                       "backgroundY" in part ? part.backgroundY : "0%"
                     }`,

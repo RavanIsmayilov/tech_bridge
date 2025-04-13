@@ -1,24 +1,10 @@
-import { useEffect, useState } from "react";
 import NumberFlow, { continuous } from "@number-flow/react";
 
-const AnimatedCounter = () => {
-  const [value, setValue] = useState(0);
-  const target = 250;
+interface countType {
+  count: number;
+}
 
-  useEffect(() => {
-    let current = 0;
-    const interval = setInterval(() => {
-      current += 5;
-      if (current >= target) {
-        current = target;
-        clearInterval(interval);
-      }
-      setValue(current);
-    }, 20);
-
-    return () => clearInterval(interval);
-  }, []);
-
+const AnimatedCounter: React.FC<countType> = ({ count }) => {
   const format = {
     notation: "compact",
     compactDisplay: "short",
@@ -29,7 +15,7 @@ const AnimatedCounter = () => {
     <NumberFlow
       willChange
       plugins={[continuous]}
-      value={value}
+      value={count}
       locales="en-US"
       format={format}
     />

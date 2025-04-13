@@ -3,6 +3,7 @@ import CloseIcon from "../../assets/icon/x icon.svg";
 import puzzle1 from "../../assets/images/puzzle1.svg";
 import puzzle2 from "../../assets/images/puzzle-2.svg";
 import puzzle3 from "../../assets/images/qiz-qalasi.png";
+import puzzle4 from "../../assets/images/50c9f788ec30082249855fed103fcc5f.jpeg";
 interface PuzzleModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -14,6 +15,7 @@ const levels = [
   { id: 1, image: puzzle1 },
   { id: 2, image: puzzle2 },
   { id: 3, image: puzzle3 },
+  { id: 4, image: puzzle4 },
 ];
 
 const PuzzleModal: React.FC<PuzzleModalProps> = ({

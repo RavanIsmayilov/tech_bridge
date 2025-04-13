@@ -46,7 +46,7 @@ const DragDropPage: React.FC = () => {
 		{ id: 1, text: "Şimal", arrow: <ImArrowUp /> },
 		{ id: 2, text: "Cənub", arrow: <ImArrowDown /> },
 		{ id: 3, text: "Şərq", arrow: <ImArrowRight /> },
-		{ id: 4, text: "Qərb", arrow: <ImArrowLeft /> },
+		{ id: 4, text: "Qərb", arrow: <ImArrowLeft /> }, 
 	];
 
 	const handleDragStart = (e: React.DragEvent<HTMLDivElement>, id: any) => {
@@ -220,7 +220,7 @@ const DragDropPage: React.FC = () => {
 			<div className="flex items-center justify-around">
 				<div
 					id="left-container"
-					className="relative flex flex-col gap-6 p-15 items-center w-[343px] h-full border-r-4 border-[#FDD446] -mt-45"
+					className="relative flex flex-col gap-6 p-20 items-center w-[343px] h-full border-r-4 border-[#FDD446] -mt-40"
 					onDragOver={handleDragOver}
 					onDrop={handleRemove}
 				>
