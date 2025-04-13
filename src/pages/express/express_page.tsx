@@ -90,7 +90,7 @@ const CourseProgress = () => {
                             className="w-[45px] sm:w-14 sm:h-auto"
                           />
                           <span className="text-[10px] w-[100px] text-center sm:w-[150px] sm:text-[15px]">
-                            "Angry Birds" proqramlaşdırma
+                            Puzzle qurma
                           </span>
                         </div>
                         <div className="flex items-center gap-2 text-[14px] text-[#08244E] text-center">
@@ -100,7 +100,7 @@ const CourseProgress = () => {
                             className="w-[45px] sm:w-14 sm:h-auto"
                           />
                           <span className="text-[10px] w-[100px] text-center sm:w-[150px] sm:text-[15px]">
-                            "Rey və BB-8" proqramlaşdırma
+                            Drag & Drop
                           </span>
                         </div>
                         <div className="flex items-center gap-2 text-[14px] text-[#08244E] text-center">
@@ -129,36 +129,70 @@ const CourseProgress = () => {
                       <span className="font-semibold bg-[#007396] text-white px-6 py-1 rounded-[18px] text-[15px]">
                         İrəliləyiş
                       </span>
-                      <div className="flex flex-row gap-2.5  justify-between ">
-                        <div className="items-center hidden sm:flex">
-                          <img
-                            src={Atom}
-                            alt="icon"
-                            className="w-[45px] sm:w-14 sm:block sm:ml-0.5"
-                          />
-                        </div>
-                        <div className="flex max-w-[430px] lg:max-w-[100%] xl:overflow-hidden overflow-x-scroll">
-                          {[...Array(10)].map((_, i) => (
-                            <div className="relative flex items-center w-[72.2px]">
-                              <div
-                                onClick={() => {
-                                  navigate({
-                                    pathname: "/puzzlegame",
-                                    search: `${createSearchParams({
-                                      levels: (i + 1).toString(),
-                                    })}`,
-                                  });
-                                }}
-                                key={i}
-                                className="w-11 h-10 flex items-center justify-center rounded-full bg-[#1491B873] text-[#08244E] cursor-pointer ml-8"
-                              >
-                                {i + 1}
+                      <div className="flex flex-col gap-2.5  justify-between ">
+                        <div className="flex items-center">
+                          <div className="items-center hidden sm:flex">
+                            <img
+                              src={Atom}
+                              alt="icon"
+                              className="w-[45px] sm:w-14 sm:block sm:ml-0.5"
+                            />
+                          </div>
+                          <div className="flex max-w-[430px] lg:max-w-[100%] xl:overflow-hidden overflow-x-scroll">
+                            {[...Array(10)].map((_, i) => (
+                              <div className="relative flex items-center w-[72.2px]">
+                                <div
+                                  onClick={() => {
+                                    navigate({
+                                      pathname: "/puzzlegame",
+                                      search: `${createSearchParams({
+                                        levels: (i + 1).toString(),
+                                      })}`,
+                                    });
+                                  }}
+                                  key={i}
+                                  className="w-11 h-10 flex items-center justify-center rounded-full bg-[#1491B873] text-[#08244E] cursor-pointer ml-8"
+                                >
+                                  {i + 1}
+                                </div>
+                                {i < 9 && (
+                                  <span className="absolute flex gap-6 bg-[#81C0D1] w-[34px] h-[5px] left-18"></span>
+                                )}
                               </div>
-                              {i < 9 && (
-                                <span className="absolute flex gap-6 bg-[#81C0D1] w-[34px] h-[5px] left-18"></span>
-                              )}
-                            </div>
-                          ))}
+                            ))}
+                          </div>
+                        </div>
+                        <div className="flex items-center">
+                          <div className="items-center hidden sm:flex">
+                            <img
+                              src={Tips}
+                              alt="icon"
+                              className="w-[45px] sm:w-14 sm:block sm:ml-0.5"
+                            />
+                          </div>
+                          <div className="flex max-w-[430px] lg:max-w-[100%] xl:overflow-hidden overflow-x-scroll">
+                            {[...Array(10)].map((_, i) => (
+                              <div className="relative flex items-center w-[72.2px]">
+                                <div
+                                  onClick={() => {
+                                    navigate({
+                                      pathname: "/dragdrop",
+                                      search: `${createSearchParams({
+                                        levels: (i + 1).toString(),
+                                      })}`,
+                                    });
+                                  }}
+                                  key={i}
+                                  className="w-11 h-10 flex items-center justify-center rounded-full bg-[#1491B873] text-[#08244E] cursor-pointer ml-8"
+                                >
+                                  {i + 1}
+                                </div>
+                                {i < 9 && (
+                                  <span className="absolute flex gap-6 bg-[#81C0D1] w-[34px] h-[5px] left-18"></span>
+                                )}
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -181,7 +181,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
 
   const getCountData = async () => {
     try {
-      const res = await axios.get("http://89.116.39.179:8081/api/count");
+      const res = await axios.get("http://89.116.39.179:8080/api/count");
       setValue(res.data);
     } catch (error) {
       if (isAxiosError(error)) {
@@ -191,7 +191,13 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
   };
 
   useEffect(() => {
-    getCountData();
+    getCountData(); // İlk dəfə yüklənəndə dərhal datanı çək
+
+    const interval = setInterval(() => {
+      getCountData(); // Sonra 20 saniyədə bir yenilə
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const navigate = useNavigate();
