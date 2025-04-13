@@ -39,7 +39,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
       style={{
         backgroundImage: `url(${fullImage})`,
         backgroundSize: `${backgroundX ? "200% 100%" : "100% 300%"}`,
-        backgroundPosition: `${backgroundX || "0%"} ${backgroundY}`,
+        backgroundPosition: `${backgroundY}`,
         backgroundRepeat: "no-repeat",
         opacity: isDragging ? 0.5 : dropped ? 1 : 1,
       }}

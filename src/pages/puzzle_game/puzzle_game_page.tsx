@@ -7,6 +7,11 @@ import puzzle2 from "../../assets/images/puzzle-2.svg";
 import puzzle3 from "../../assets/images/qiz-qalasi.png";
 import puzzle4 from "../../assets/images/50c9f788ec30082249855fed103fcc5f.jpeg";
 import TurnIcon from "../../assets/icon/TurnIcon.svg";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 const levels = [
   {
@@ -42,13 +47,23 @@ const levels = [
 ];
 
 const PuzzleGamePage: React.FC = () => {
-  const [currentLevel, setCurrentLevel] = useState(0);
+  const [searchParams, _] = useSearchParams();
+  const [currentLevel, setCurrentLevel] = useState(
+    Number(searchParams.get("levels")) - 1
+  );
   const [completed, setCompleted] = useState(false);
+  const navigate = useNavigate();
 
   const nextLevel = () => {
     setCurrentLevel((prevLevel) => {
-      console.log("Səviyyə dəyişdi:", prevLevel + 1);
-      return prevLevel + 1;
+      const newLevel = prevLevel + 1;
+      navigate({
+        pathname: "/puzzlegame",
+        search: createSearchParams({
+          levels: (newLevel + 1).toString(),
+        }).toString(),
+      });
+      return newLevel;
     });
     setCompleted(false);
   };
@@ -56,6 +71,12 @@ const PuzzleGamePage: React.FC = () => {
   const goToLevel = (level: number) => {
     setCurrentLevel(level);
     setCompleted(false);
+    navigate({
+      pathname: "/puzzlegame",
+      search: createSearchParams({
+        levels: (level + 1).toString(), // +1 çünki sıfırdan başlayırıq
+      }).toString(),
+    });
   };
 
   return (

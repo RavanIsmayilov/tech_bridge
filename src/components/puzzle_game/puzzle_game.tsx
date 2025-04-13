@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import PuzzlePiece from "./puzzle_piece";
+import { useSearchParams } from "react-router-dom";
 
 interface PuzzleGameProps {
   currentLevel: number;
@@ -15,7 +16,7 @@ interface LevelsType {
     id: number;
     image?: string;
     backgroundY?: string;
-    backgroundX?: string; // bunu əlavə et
+    backgroundX?: string;
   }[];
   fullImage: string;
 }
@@ -27,6 +28,7 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({
 }) => {
   const [placedParts, setPlacedParts] = useState<number[]>([]);
   const currentPuzzle = levels[currentLevel];
+  const [searchParams, _] = useSearchParams();
 
   useEffect(() => {
     setPlacedParts([]);
@@ -61,10 +63,12 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({
   return (
     <div
       className={`flex ${
-        currentLevel === 0 ? "justify-start" : "justify-around"
+        Number(searchParams.get("levels")) === 1
+          ? "justify-start"
+          : "justify-around"
       } items-center w-full h-full py-14`}
     >
-      {currentLevel >= 1 && currentLevel <= 4 ? (
+      {currentLevel >= 1 && currentLevel <= 5 ? (
         <div className="flex flex-col space-y-4">
           <div className="flex flex-col space-y-4">
             {currentPuzzle.parts
@@ -76,8 +80,7 @@ const PuzzleGame: React.FC<PuzzleGameProps> = ({
                   id={part.id}
                   image={part.image}
                   fullImage={currentPuzzle.fullImage}
-                  backgroundY={part.backgroundY}
-                  backgroundX={part.backgroundX}
+                  backgroundY={"backgroundY" in part ? part.backgroundY : ""}
                   useSlice={!!(part.backgroundY || part.backgroundX)}
                   dropped={false}
                 />

@@ -3,11 +3,13 @@ import Tips from "../../assets/icon/tips.svg";
 import Atom from "../../assets/icon/atom.svg";
 import Trianqle from "../../assets/icon/triangle.svg";
 import { AnimatePresence, motion } from "framer-motion";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const CourseProgress = () => {
   const [isOperatorsOpen, setIsOperatorsOpen] = useState(false);
   const [isEventsOpen, setIsEventsOpen] = useState(false);
   const [isArdicaliqOpen, setIsArdicaliqOpen] = useState(false); // State for Ardıcılıq section
+  const navigate = useNavigate();
 
   return (
     <div className="max-w-[1200px] h-auto mx-auto p-6">
@@ -139,6 +141,14 @@ const CourseProgress = () => {
                           {[...Array(10)].map((_, i) => (
                             <div className="relative flex items-center w-[72.2px]">
                               <div
+                                onClick={() => {
+                                  navigate({
+                                    pathname: "/puzzlegame",
+                                    search: `${createSearchParams({
+                                      levels: (i + 1).toString(),
+                                    })}`,
+                                  });
+                                }}
                                 key={i}
                                 className="w-11 h-10 flex items-center justify-center rounded-full bg-[#1491B873] text-[#08244E] cursor-pointer ml-8"
                               >

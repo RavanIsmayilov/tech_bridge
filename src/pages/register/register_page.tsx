@@ -1,15 +1,15 @@
+import axios, { isAxiosError } from "axios";
 import React, { useState } from "react";
 
 const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
-    emailOrPhone: "",
-    username: "",
+    email: "",
+    name: "",
     password: "",
-    confirmPassword: "",
+    username: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -18,9 +18,19 @@ const RegisterPage: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form submission logic here (e.g., send data to an API)
+    try {
+      const res = await axios.post(
+        "http://89.116.39.179:8080/api/auth/register",
+        formData
+      );
+      console.log(res.data);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        return error.response?.data.message;
+      }
+    }
     console.log(formData);
   };
 
@@ -36,16 +46,16 @@ const RegisterPage: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
-              htmlFor="emailOrPhone"
+              htmlFor="email"
               className="block text-[#1E3A8A] font-semibold mb-2"
             >
               E-poçt ünvanını və ya telefon nömrəsini daxil et
             </label>
             <input
               type="text"
-              id="emailOrPhone"
-              name="emailOrPhone"
-              value={formData.emailOrPhone}
+              id="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               required
               className="w-full p-2 border-2 border-[#1E3A8A] rounded-lg focus:outline-none focus:border-[#FDD446]"
@@ -54,16 +64,16 @@ const RegisterPage: React.FC = () => {
 
           <div className="mb-4">
             <label
-              htmlFor="username"
+              htmlFor="name"
               className="block text-[#1E3A8A] font-semibold mb-2"
             >
               İstifadəçi adı seç
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               required
               className="w-full p-2 border-2 border-[#1E3A8A] rounded-lg focus:outline-none focus:border-[#FDD446]"
@@ -108,38 +118,20 @@ const RegisterPage: React.FC = () => {
 
           <div className="mb-6 relative">
             <label
-              htmlFor="confirmPassword"
+              htmlFor="username"
               className="block text-[#1E3A8A] font-semibold mb-2"
             >
-              Şifrəni təsdiq et
+              User name elave et
             </label>
             <input
-              type={showConfirmPassword ? "text" : "password"}
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               required
               className="w-full p-2 pr-10 border-2 border-[#1E3A8A] rounded-lg focus:outline-none focus:border-[#FDD446]"
             />
-            <span
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3  bottom-[-2px] transform -translate-y-1/2 cursor-pointer"
-            >
-              {showConfirmPassword ? (
-                <img
-                  src="src/assets/icon/showeye.svg"
-                  alt=""
-                  className="w-6 h-6"
-                />
-              ) : (
-                <img
-                  src="src/assets/icon/hideeye.svg"
-                  alt=""
-                  className="w-6 h-6"
-                />
-              )}
-            </span>
           </div>
 
           <div className="flex items-center justify-center mb-4">
@@ -147,6 +139,10 @@ const RegisterPage: React.FC = () => {
             <p className="mx-4 text-[#1E3A8A] text-sm">və ya</p>
             <hr className="border-t border-[#1E3A8A] w-2/5" />
           </div>
+          <select name="duty" id="duty">
+            <option value="Valideyn">Valideyn</option>
+            <option value="Tələbə">Tələbə</option>
+          </select>
 
           <div className="mb-4">
             <button

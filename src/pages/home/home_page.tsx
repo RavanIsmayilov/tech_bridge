@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { animation } from "../../utils/Animation";
@@ -6,20 +6,37 @@ import { fadeInAnimationVariants } from "../../utils/FadeInAnimation";
 import WatchVideoIcon from "../../assets/icon/Watch Video Button.svg";
 import LeftScroolIcon from "../../assets/icon/flat-color-icons_previous.svg";
 import RightScroolIcon from "../../assets/icon/right-flat-color-icons_previous.svg";
-import CommentPhoto from "../../assets/icon/fotor-2024032323456 1.svg";
 import Quotation from "../../assets/icon/quotation.svg";
 import HomeBg from "../../assets/images/home_bg.svg";
 import AnimatedCounter from "../../components/general/AnimatedCounter";
-import newsImage1 from "../../assets/images/image.svg";
-import newsImage2 from "../../assets/images/image (1).svg";
 import Image1 from "../../assets/images/pese-temayullu-sinifler.svg";
 import Image2 from "../../assets/images/GDG-EVENTS.svg";
 import Image3 from "../../assets/images/MediaMark.svg";
 import CalendarIcon from "../../assets/icon/calendar.svg";
-import TeamImg from "../../assets/images/0485bf06131df4f28e5199d075b4f453.jpeg";
 import BlobImg from "../../assets/images/Vector.svg";
+import Tech4EquityTeam from "../../assets/images/Team - Tech4Equity.jpeg";
+import about1 from "../../assets/images/about-1.jpeg";
+import about2 from "../../assets/images/about-2.jpeg";
+import news1 from "../../assets/images/news-1.jpeg";
+import news2 from "../../assets/images/news-2.jpeg";
+import news3 from "../../assets/images/news-3.jpeg";
+import news4 from "../../assets/images/news-4.jpeg";
+import Shortened from "../../components/general/Shortened";
+import axios, { isAxiosError } from "axios";
+
+interface countType {
+  studentCount: number;
+  parentCount: number;
+  regionCount: number;
+}
 
 const HomePage: React.FC = () => {
+  const [value, setValue] = useState<countType>({
+    parentCount: 0,
+    regionCount: 0,
+    studentCount: 0,
+  });
+
   const partners = [
     { name: "Elm və Təhsil Nazirliyi", image: Image1 },
     { name: "ARTİ", image: Image2 },
@@ -89,46 +106,22 @@ const HomePage: React.FC = () => {
 
   const newsData = [
     {
-      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
-      time: "20 Mart 2025",
-      description:
-        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
-      image: [newsImage1, newsImage2],
+      title: "Xirdalan 1 nomreli məktəbdə, səbəkə ilə baglı seminar keçirildi",
+      time: "9 Aprel 2025",
+      description: `İlk andan etibarən bizi parlaq təbəssümlər, maraqlı suallar və tükənməz enerji ilə qarşıladılar. İnteraktiv sessiyalar vasitəsilə texnologiyanın onların gələcəyini necə formalaşdıra biləcəyini və yeni arzulara necə ilham verə biləcəyini araşdırdıq 🤩💡
+Biz sadəcə bilik paylaşmırıq — elə bir gələcək qururuq ki, burada hər bir uşağın həyatını dəyişə biləcək alətlərə çıxışı var.
+
+Gəlin texnologiya körpülərini birlikdə qurmağa davam edək — məktəb-məktəb! 😍`,
+      image: [news1, news2],
     },
     {
-      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
-      time: "20 Mart 2025",
-      description:
-        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
-      image: [newsImage1, newsImage2],
-    },
-    {
-      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
-      time: "20 Mart 2025",
-      description:
-        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
-      image: [newsImage1, newsImage2],
-    },
-    {
-      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
-      time: "20 Mart 2025",
-      description:
-        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
-      image: [newsImage1, newsImage2],
-    },
-    {
-      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
-      time: "20 Mart 2025",
-      description:
-        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
-      image: [newsImage1, newsImage2],
-    },
-    {
-      title: "Süni İntellekt Seminarı Baş Tutdu! 🤖",
-      time: "20 Mart 2025",
-      description:
-        "Texnologiya həvəskarları üçün təşkil etdiyimiz seminar uğurla başa çatdı! Qonaqlarımızla tanış olun.",
-      image: [newsImage1, newsImage2],
+      title:
+        "Robotics ilə Ümid Körpüsü: Xərçənglə Mübarizə Aparan Uşaqlarla Görüş",
+      time: "6 Aprel 2025",
+      description: `6 Aprel tarixində @gh_initiative ilə birgə Liv Bona Dea Hospitalında xərçənglə mübarizə aparan güclü uşaqlarla vaxt keçirdik. Onlarla keçirdiyimiz hər an sevgi, ümid və güc dolu idi. Onların gülümsəmələri bizə böyük motivasiya verdi!
+@gh_initiative ‘ə bu dəyərli tədbirdə iştirak etməyə dəvət etdikləri üçün təşəkkür edirik!
+Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üçün irəliləyirik!`,
+      image: [news3, news4],
     },
   ];
 
@@ -175,42 +168,31 @@ const HomePage: React.FC = () => {
 
   const testimonials = [
     {
-      name: "Farid Hasanov",
-      image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      name: "Baxşəliyeva Gülnar",
+      text: `Salam, mən Tech4Equity layihəsinin üzvüyəm. Bu layihə haqqında 1 cümlə desəm oda mükəmməldir olardı. Çünki demək olar ki, texnologiya sahəsinə marağı, biliyi artıran əla layihədir. Hələ 10 günlük bootcamp peşəkar mütəxəssislər tərəfindən həyata keçirilərək daha maraqlı keçir. Qarşıda bizi hackaton gözləyir. Ümid edirəm daha maraqlı olacaq. Mən çox şey öyrəndim. Bundan çox razı qaldım. Əziyyəti olan hər kəsə təşəkkürlər. 😊`,
       quotation: Quotation,
     },
     {
-      name: "Farid Hasanov",
-      image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
-      quotation: Quotation,
-    },
-    {
-      name: "Farid Hasanov",
-      image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
-      quotation: Quotation,
-    },
-    {
-      name: "Farid Hasanov",
-      image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
-      quotation: Quotation,
-    },
-    {
-      name: "Farid Hasanov",
-      image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
-      quotation: Quotation,
-    },
-    {
-      name: "Farid Hasanov",
-      image: CommentPhoto,
-      text: "My aging pet’s care became effortless with the diverse offerings available. From nutritious pet foods to accessible vet services, the app ensured my pet’s well-being with convenience at every step.",
+      name: "Maqsudova Fidan",
+      text: `Layihəniz çox möhtəşəmdir! Çox faydalıdır. Hər sessiya ayrı maraqlı və məlumatlandırıcıdır. Çox əla "Bootcamp" təşkil etmisiniz. Xüsusilə Elcan bəy və Elvin bəyə təşəkkürlər ✨`,
       quotation: Quotation,
     },
   ];
+
+  const getCountData = async () => {
+    try {
+      const res = await axios.get("http://89.116.39.179:8081/api/count");
+      setValue(res.data);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        return error.response?.data.message;
+      }
+    }
+  };
+
+  useEffect(() => {
+    getCountData();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -267,7 +249,7 @@ const HomePage: React.FC = () => {
       </motion.section>
 
       {/* Info section */}
-      <section className="bg-[#3B5D7D] py-4 px-8 h-[232px] flex items-center">
+      <section className="bg-[#3B5D7D] px-8 flex items-center">
         <div className="w-full flex items-center text-white max-w-[1600px] mx-auto">
           <div className="text-[36px] font-bold border-r-2 pr-7 h-[110px] flex items-center text-center">
             Burada rəqəmlər danışır:
@@ -276,25 +258,25 @@ const HomePage: React.FC = () => {
             <div className="flex items-center px-7">
               <span className="text-[30px] font-bold mr-7">Tələbələr:</span>
               <span
-                className={`bg-[#ED8116] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+                className={`bg-[#ED8116] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
               >
-                <AnimatedCounter />
+                <AnimatedCounter count={value.studentCount} />
               </span>
             </div>
             <div className="flex items-center">
               <span className="text-[30px] font-bold mr-7">Valideynlər:</span>
               <span
-                className={`bg-[#78D148] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+                className={`bg-[#78D148] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
               >
-                <AnimatedCounter />
+                <AnimatedCounter count={value.parentCount} />
               </span>
             </div>
             <div className="flex items-center">
               <span className="text-[30px] font-bold mr-7">Regionlar:</span>
               <span
-                className={`bg-[#6BBDE5] text-white font-bold text-[20px] py-3 px-3 rounded-full`}
+                className={`bg-[#6BBDE5] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
               >
-                <AnimatedCounter />
+                <AnimatedCounter count={value.regionCount} />
               </span>
             </div>
           </div>
@@ -306,56 +288,53 @@ const HomePage: React.FC = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="relative flex items-center justify-between pt-[120px] pb-[200px] px-8"
+        className="relative"
       >
         <img
           className="absolute top-0 left-0"
           src="src/assets/images/aboutframeup.svg"
           alt=""
         />
-        <div className="flex w-full justify-between overflow-hidden">
-          {/* Left Side (Image) */}
-          <div className=" w-full p-4 h-full">
-            <motion.img
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              src="src/assets/images/aboutimage1.svg" // Replace with your image URL
-              alt="About Image"
-              className="absolute top-50 left-20 object-cover z-1 "
-            />
-            <img
-              src="src/assets/images/aboutellipse.svg" // Replace with your image URL
-              alt="About Image"
-              className="absolute object-cover top-60 left-70 right-50 "
-            />
-            <motion.img
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              src="src/assets/images/aboutimage2.svg" // Replace with your image URL
-              alt="About Image"
-              className="absolute bottom-0 left-120 object-cover z-2 "
-            />
-          </div>
+        <div className="max-w-[1660px] mx-auto relative flex items-center justify-between pt-[120px] pb-[200px] px-8">
+          <div className="flex w-full justify-between overflow-hidden">
+            {/* Left Side (Image) */}
+            <div className=" w-full p-4 h-full">
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                src={about2} // Replace with your image URL
+                alt="About Image"
+                className="absolute top-[10%] left-[10%] object-cover z-1 w-[20%] h-[332px] rounded-2xl"
+              />
+              <img
+                src="src/assets/images/aboutellipse.svg" // Replace with your image URL
+                alt="About Image"
+                className="absolute object-cover top-60 left-70 right-50"
+              />
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                src={about1} // Replace with your image URL
+                alt="About Image"
+                className="absolute bottom-[10%] left-[25%] object-cover z-2 w-[20%] h-[332px] rounded-2xl"
+              />
+            </div>
 
-          {/* Right Side (Text Content) */}
-          <div className="w-full p-8 text-white font-verdana">
-            <h2 className="text-5xl font-bold mb-6 text-[#6C325B] text-center">
-              Haqqımızda
-            </h2>
-            <p className="text-[36px] font-verdana text-black">
-              Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
-              onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
-              digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
-              gələcəyin texnologiyalarını kəşf edin və innovasiyanın bir hissəsi
-              olun!
-            </p>
+            {/* Right Side (Text Content) */}
+            <div className="w-full p-8 text-white font-verdana">
+              <h2 className="text-5xl font-bold mb-6 text-[#6C325B] text-center">
+                Haqqımızda
+              </h2>
+              <p className="text-[26px] font-verdana text-black">
+                Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
+                onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
+                digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
+                gələcəyin texnologiyalarını kəşf edin və innovasiyanın bir
+                hissəsi olun!
+              </p>
+            </div>
           </div>
         </div>
-        <img
-          className="absolute bottom-0 right-0"
-          src="src/assets/images/aboutframedown.svg"
-          alt=""
-        />
       </motion.section>
 
       {/* Komandamiz */}
@@ -363,12 +342,10 @@ const HomePage: React.FC = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="relative py-16 px-6 md:px-24 bg-white overflow-hidden"
+        className="relative"
       >
         {/* Dekor elementləri */}
-        <div className="absolute top-10 left-0 w-40 h-40 bg-[#D6E6FF] rounded-br-[60px] z-0"></div>
-        <div className="absolute bottom-10 left-1/3 w-[120px] h-[120px] border-[2px] border-[#6F74DD] border-dashed rounded-[20px] z-0"></div>
-        <div className="absolute bottom-20 right-10 w-16 h-16 border-[2px] border-yellow-400 rotate-45 z-0"></div>
+        {/* <div className="absolute top-10 left-0 w-40 h-40 bg-[#D6E6FF] rounded-br-[60px] z-0"></div> */}
 
         {/* 🔵 Əlavə edilən dekorativ blob şəkli */}
         <img
@@ -378,36 +355,40 @@ const HomePage: React.FC = () => {
         />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10">
-          {/* Sol tərəf - Mətn */}
-          <div className="lg:w-1/2 flex justify-center items-center flex-col">
-            <div className="w-full flex justify-start items-start mb-20 ml-56">
-              <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#6C325B] mb-6 text-left">
-                Komandamız
-              </h2>
+        <div className="relative py-16 px-6 md:px-24 overflow-hidden h-[700px] max-w-[1660px] mx-auto">
+          <div className="absolute bottom-10 left-1/3 w-[120px] h-[120px] border-[2px] border-[#6F74DD] border-dashed rounded-[20px] z-0"></div>
+          <div className="absolute bottom-20 right-10 w-16 h-16 border-[2px] border-yellow-400 rotate-45 z-0"></div>{" "}
+          <div className="relative z-10 flex flex-col lg:flex-row items-start gap-10">
+            {/* Sol tərəf - Mətn */}
+            <div className="lg:w-[70%] flex justify-start items-center flex-col">
+              <div className="w-[70%] flex justify-start items-center">
+                <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#6C325B] text-left">
+                  Komandamız
+                </h2>
+              </div>
+              <p className="text-[#08244E] text-[28px] leading-relaxed mx-auto lg:mx-0 w-[70%] h-[300px]">
+                Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
+                onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
+                digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
+                gələcəyin texnologiyalarını kəşf edin və innovasiyanın bir
+                hissəsi olun!
+              </p>
             </div>
-            <p className="text-[#08244E] text-[18px] leading-relaxed max-w-md mx-auto lg:mx-0 text-center">
-              Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
-              onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
-              digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
-              gələcəyin texnologiyalarını kəşf edin və innovasiyanın bir hissəsi
-              olun!
-            </p>
-          </div>
 
-          {/* Sağ tərəf - Şəkil + Slider */}
-          <div className="lg:w-1/2">
-            <div className="border-[2px] border-[#D7BFFF] rounded-2xl p-3">
-              <img
-                src={TeamImg} // şəkil yolunu uyğunlaşdır
-                alt="Komanda"
-                className="rounded-xl w-full h-auto object-cover"
-              />
-            </div>
-            <div className="flex justify-center gap-2 mt-4">
-              <span className="w-2.5 h-2.5 bg-black rounded-full"></span>
-              <span className="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
-              <span className="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
+            {/* Sağ tərəf - Şəkil + Slider */}
+            <div className="lg:w-1/2">
+              <div className="border-[2px] border-[#D7BFFF] rounded-2xl p-3">
+                <img
+                  src={Tech4EquityTeam} // şəkil yolunu uyğunlaşdır
+                  alt="Komanda"
+                  className="rounded-xl w-full h-auto object-cover"
+                />
+              </div>
+              <div className="flex justify-center gap-2 mt-4">
+                <span className="w-2.5 h-2.5 bg-black rounded-full"></span>
+                <span className="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
+                <span className="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -535,7 +516,7 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Akademik partnyorlar */}
-      <section className="text-center py-8 overflow-hidden">
+      <section className="text-center py-8 overflow-hidden max-w-[1660px] mx-auto">
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-10">
           Akademik partnyorlar
         </h2>
@@ -571,7 +552,7 @@ const HomePage: React.FC = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="text-left py-8 w-[80%] flex flex-col mx-auto"
+        className="text-left py-8 w-[80%] flex flex-col max-w-[1660px] mx-auto"
       >
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-12">
           Xəbərlər & Tədbirlər
@@ -612,7 +593,7 @@ const HomePage: React.FC = () => {
                       </span>
                     </div>
                     <p className="text-black mt-2 text-left w-3/4 lg:w-full">
-                      {news.description}
+                      <Shortened shortText={news.description} />
                     </p>
                   </div>
                   <div className="w-1/2 relative">
@@ -624,9 +605,9 @@ const HomePage: React.FC = () => {
                           alt="news"
                           className={`mt-4 rounded-lg ${
                             index === 0
-                              ? "w-[200px] h-[200px] right-0"
-                              : "w-[210px] top-[40%] left-[-20%]"
-                          } absolute`}
+                              ? "w-[180px] h-[180px] right-0"
+                              : "w-[200px] h-[200px] top-[30%] left-[10%]"
+                          } absolute `}
                         />
                       ))}
                   </div>
@@ -649,7 +630,7 @@ const HomePage: React.FC = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="py-20 w-[80%] flex flex-col mx-auto"
+        className="py-20 w-[80%] flex flex-col max-w-[1660px] mx-auto"
       >
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-12 text-center">
           Rəylər
@@ -679,17 +660,9 @@ const HomePage: React.FC = () => {
                     key={index}
                     className="relative flex flex-col items-center"
                   >
-                    <div className="absolute top-0 z-10">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-40 rounded-full object-cover shadow-lg"
-                      />
-                    </div>
-
                     {/* Kartın özü */}
                     <div
-                      className={`mt-[40px] pt-[80px] border h-[350px] flex flex-col items-center justify-center 
+                      className={`mt-[40px] border h-[350px] flex flex-col items-center justify-center 
       border-[#FE93A6] rounded-[30px] p-6 w-[75%] lg:w-[600px] flex-shrink-0 
       shadow-lg transition-all duration-300 ${
         isActive ? "bg-[#FFF7C2]" : "bg-[#E6FAFF]"

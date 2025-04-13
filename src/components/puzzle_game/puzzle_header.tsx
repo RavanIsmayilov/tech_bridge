@@ -2,6 +2,7 @@ import React from "react";
 import LogoHeader from "../../assets/images/logo header.svg";
 import ThreeDot from "../../assets/icon/three dot row.svg";
 import UpArrow from "../../assets/icon/Polygon 12.svg";
+import { useNavigate } from "react-router-dom";
 
 interface LevelsType {
   id: number;
@@ -20,10 +21,12 @@ const PuzzleHeader: React.FC<PuzzleHeaderProps> = ({
   goToLevel,
   levels,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-[#99D1ED7A] flex justify-between items-center px-14 py-3">
       {/* Logo */}
-      <div className="">
+      <div className="cursor-pointer" onClick={() => navigate("/")}>
         <img src={LogoHeader} alt="LogoHeader" />
       </div>
 
