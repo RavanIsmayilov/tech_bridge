@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import DragDropHeader from "../../components/dragdrop/dragdropheader";
 import { ImArrowUp, ImArrowRight, ImArrowLeft, ImArrowDown } from "react-icons/im";
 import Rect1 from '../../assets/icon/Rectangle23971.svg';
@@ -168,8 +168,15 @@ const DragDropPage: React.FC = () => {
 		});
 	};
 
+	const isRunningRef = useRef(true);
+	const [isRunning, setIsRunning] = useState(false);
+
+
 	// 🔄 Сброс уровня
 	const handleReset = () => {
+
+		isRunningRef.current = false;
+
 		const bird = document.getElementById('bird');
 		const snake = document.getElementById('snake');
 		const rightContainer = document.getElementById('right-container');
@@ -236,13 +243,7 @@ const DragDropPage: React.FC = () => {
 							<span className="ml-2">{item.text}</span>
 							{item.arrow}
 						</div>
-					))}
-					{/* <div className="relative w-[220px] h-[100px] cursor-pointer">
-						<img src={Rect2} alt="logo" className="absolute w-[300px] h-[150px]" />
-						<img src={Rect1} alt="logo" className="absolute w-[175px] h-[165px] -right-2" />
-						<span className="absolute text-white top-3.5 left-2 text-xl font-semibold">Dövr</span>
-						<img src={Repeat} alt="logo" className="absolute cursor-pointer top-12 left-0.5"/>
-					</div> */}
+					))} 
 
 					<div className="relative w-[220px] h-[100px] cursor-pointer">
 						<img src={Rect2} alt="logo" className="absolute w-[300px] h-[150px]" />
