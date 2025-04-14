@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { animation } from "../../utils/Animation";
@@ -22,20 +22,26 @@ import news2 from "../../assets/images/news-2.jpeg";
 import news3 from "../../assets/images/news-3.jpeg";
 import news4 from "../../assets/images/news-4.jpeg";
 import Shortened from "../../components/general/Shortened";
-import axios, { isAxiosError } from "axios";
+import aboutellipse from "../../assets/images/aboutellipse.svg";
+import subjectsimage1 from "../../assets/images/subjectsimage1.svg";
+import subjectsimage2 from "../../assets/images/subjectsimage2.svg";
+import subjectsimage3 from "../../assets/images/subjectsimage3.svg";
+import subjectsimage4 from "../../assets/images/subjectsimage4.svg";
+import support from "../../assets/images/image 113.svg";
+// import axios, { isAxiosError } from "axios";
 
-interface countType {
-  studentCount: number;
-  parentCount: number;
-  regionCount: number;
-}
+// interface countType {
+//   studentCount: number;
+//   parentCount: number;
+//   regionCount: number;
+// }
 
 const HomePage: React.FC = () => {
-  const [value, setValue] = useState<countType>({
-    parentCount: 0,
-    regionCount: 0,
-    studentCount: 0,
-  });
+  // const [value, setValue] = useState<countType>({
+  //   parentCount: 0,
+  //   regionCount: 0,
+  //   studentCount: 0,
+  // });
 
   const partners = [
     { name: "Elm və Təhsil Nazirliyi", image: Image1 },
@@ -48,7 +54,7 @@ const HomePage: React.FC = () => {
       title: "Blok Kodlaşdırma",
       description: "Blok kodlaşdırma vizual proqramlaşdırma üsuludur.",
       color: "bg-[#DFADFF]",
-      image: "src/assets/images/subjectsimage1.svg", // Replace with actual image path
+      image: subjectsimage1,
       position: "top-14 right-[-25px]",
     },
     {
@@ -56,7 +62,7 @@ const HomePage: React.FC = () => {
       description:
         "Süni İntellekt, kompüterlərin öyrənib, qərar vermə qabiliyyətidir.",
       color: "bg-[#38CDFF]",
-      image: "src/assets/images/subjectsimage2.svg", // Replace with actual image path
+      image: subjectsimage2,
       position: "top-34",
     },
     {
@@ -64,7 +70,7 @@ const HomePage: React.FC = () => {
       description:
         "Avadanlıq Laboratoriyası, avadanlıqların test edildiyi məkandır.",
       color: "bg-[#FF5A50DB]",
-      image: "src/assets/images/subjectsimage3.svg", // Replace with actual image path
+      image: subjectsimage3,
       position: "top-28",
     },
     {
@@ -72,7 +78,7 @@ const HomePage: React.FC = () => {
       description:
         "Kvant hesablamaları kvant mexanikasına əsaslanan hesablama üsuludur.",
       color: "bg-[#CBF86D]",
-      image: "src/assets/images/subjectsimage4.svg", // Replace with actual image path
+      image: subjectsimage4,
       position: "top-23 right-[-20px]",
     },
   ];
@@ -179,26 +185,26 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
     },
   ];
 
-  const getCountData = async () => {
-    try {
-      const res = await axios.get("http://89.116.39.179:8080/api/count");
-      setValue(res.data);
-    } catch (error) {
-      if (isAxiosError(error)) {
-        return error.response?.data.message;
-      }
-    }
-  };
+  // const getCountData = async () => {
+  //   try {
+  //     const res = await axios.get("http://89.116.39.179:8080/api/count");
+  //     setValue(res.data);
+  //   } catch (error) {
+  //     if (isAxiosError(error)) {
+  //       return error.response?.data.message;
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    getCountData(); // İlk dəfə yüklənəndə dərhal datanı çək
+  // useEffect(() => {
+  //   getCountData();
 
-    const interval = setInterval(() => {
-      getCountData(); // Sonra 20 saniyədə bir yenilə
-    }, 5000);
+  //   const interval = setInterval(() => {
+  //     getCountData();
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const navigate = useNavigate();
 
@@ -266,7 +272,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
               <span
                 className={`bg-[#ED8116] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
               >
-                <AnimatedCounter count={value.studentCount} />
+                <AnimatedCounter count={82} />
               </span>
             </div>
             <div className="flex items-center">
@@ -274,15 +280,15 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
               <span
                 className={`bg-[#78D148] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
               >
-                <AnimatedCounter count={value.parentCount} />
+                <AnimatedCounter count={0} />
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-[30px] font-bold mr-7">Regionlar:</span>
+              <span className="text-[30px] font-bold mr-7">Müəllimlər:</span>
               <span
                 className={`bg-[#6BBDE5] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
               >
-                <AnimatedCounter count={value.regionCount} />
+                <AnimatedCounter count={5} />
               </span>
             </div>
           </div>
@@ -313,7 +319,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                 className="absolute top-[10%] left-[10%] object-cover z-1 w-[20%] h-[332px] rounded-2xl"
               />
               <img
-                src="src/assets/images/aboutellipse.svg" // Replace with your image URL
+                src={aboutellipse} // Replace with your image URL
                 alt="About Image"
                 className="absolute object-cover top-60 left-70 right-50"
               />
@@ -332,11 +338,15 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                 Haqqımızda
               </h2>
               <p className="text-[26px] font-verdana text-black">
-                Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
-                onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
-                digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
-                gələcəyin texnologiyalarını kəşf edin və innovasiyanın bir
-                hissəsi olun!
+                Tech4Equity – tələbələri bilik, imkanlar və dəstəklə
+                gücləndirməyi hədəfləyən bir icmadır. Missiyamız tələbələri
+                yeniliklər, müsabiqələr və faydalı resurslar haqqında
+                məlumatlandırmaq, həmçinin onların təhsildə inkişafına kömək
+                etməkdir. Biz texnologiya təhsilində bərabər imkanlar yaratmağa
+                və hər bir tələbəyə öyrənmək və inkişaf etmək üçün əlçatan mühit
+                təqdim etməyə çalışırıq. Bu yolda siz təkcə bilik əldə
+                etməyəcək, həm də bir çox uğurlara və mükafatlara sahib
+                olacaqsınız!
               </p>
             </div>
           </div>
@@ -447,7 +457,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
       <div className="relative overflow-hidden max-w-[1660px] mx-auto h-[1000px] flex justify-center items-center">
         <div className="absolute w-full -z-10 felx justify-center items-center">
           <img
-            src="src/assets/images/image 113.svg" // Replace with your wavy background image URL
+            src={support}
             alt="Background"
             className="object-contain w-4/5 mx-auto"
           />
@@ -462,9 +472,9 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                   step.flex
                 } text-center w-full h-fit absolute ${
                   index === 0
-                    ? "left-0 top-[43%]"
+                    ? "left-0 top-[57%] -ml-6"
                     : index === 1
-                    ? "left-[60%] top-[25%]"
+                    ? "left-[60%] top-[29%]"
                     : "left-[45%] top-[60%]"
                 }`}
               >
@@ -503,17 +513,6 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                       {step.title}
                     </p>
                   </div>
-                  <p
-                    className={`text-lg text-[#08244E] font-medium tracking-[3px] ${
-                      index === 0
-                        ? "text-center"
-                        : index === 1
-                        ? "text-left"
-                        : "text-right"
-                    }`}
-                  >
-                    {step.description}
-                  </p>
                 </motion.div>
               </motion.div>
             ))}

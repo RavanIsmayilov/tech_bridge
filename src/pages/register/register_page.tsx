@@ -25,7 +25,9 @@ const RegisterPage: React.FC = () => {
         "http://89.116.39.179:8080/api/auth/register",
         formData
       );
-      console.log(res.data);
+      if (res.status === 200) {
+        alert("Registered successfully");
+      }
     } catch (error) {
       if (isAxiosError(error)) {
         return error.response?.data.message;
