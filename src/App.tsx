@@ -22,6 +22,7 @@ function App() {
         <Routes>
           {/* Header və Footer olmayan səhifələr */}
           <Route path="/puzzlegame" element={<PuzzleGamePage />} />
+					<Route path="/dragdrop" element={<DragDropPage />} />
           <Route path="/registerpage" element={<RegisterPage />} />
           <Route path="/loginpage" element={<LoginPage />} />
 
@@ -37,7 +38,7 @@ function App() {
                   <Route path="/express" element={<ExpressPage />} />
                   <Route path="/donatepage" element={<DonatePage />} />
                   <Route path="/donateformpage" element={<DonateFormPage />} />
-									<Route path="/dragdrop" element={<DragDropPage />} />
+									
                 </Routes>
                 <Footer />
               </>
