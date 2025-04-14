@@ -13,6 +13,7 @@ import DonatePage from "./pages/donate_page/donate_page";
 import DonateFormPage from "./pages/donate_page/donate_form_page";
 import RegisterPage from "./pages/register/register_page";
 import LoginPage from "./pages/login/login_page";
+import DragDropPage from "./pages/dragdrop/dragdrop_page";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                   <Route path="/express" element={<ExpressPage />} />
                   <Route path="/donatepage" element={<DonatePage />} />
                   <Route path="/donateformpage" element={<DonateFormPage />} />
+									<Route path="/dragdrop" element={<DragDropPage />} />
                 </Routes>
                 <Footer />
               </>
