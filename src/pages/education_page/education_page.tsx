@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import educationicon3 from "../../assets/images/education icon3.svg";
+import educationicon2 from "../../assets/images/education icon2.svg";
+import educationicon1 from "../../assets/images/education icon1.svg";
 
 type Program = {
   title: string;
@@ -19,7 +22,7 @@ const programs: Program[] = [
       "Kodlaşdırma saatına başla, sonra Express Kurslarımızda blok əsaslı kodlaşdırma ilə daha dərindən tanış ol. Əyləncəli proqramlaşdırma mühümünüzdə yaradıcılığını sərbəst burax və öyrənmək üçün maraqlı videolar izle.",
     bgColor: "bg-red-500",
     bgGradient: "bg-gradient-to-r from-red-500 to-orange-400",
-    imageSrc: "src/assets/images/education icon3.svg",
+    imageSrc: educationicon3,
     titleColor: "text-[#FF4721]",
     imagePosition: "bottom-[-50px] right-[-15px]",
   },
@@ -29,7 +32,7 @@ const programs: Program[] = [
       "Kodlaşdırma saatını sınadan keçir və ya öz tempinə uyğun tətilə, oyun və animasiya yaratmaq üçün kurslarımıza bax. Üstəlik, süni intellekt, proqramlaşdırma karyerası və daha çoxu haqqında öyrən!",
     bgColor: "bg-pink-500",
     bgGradient: "bg-gradient-to-r from-pink-500 to-purple-400",
-    imageSrc: "src/assets/images/education icon2.svg",
+    imageSrc: educationicon2,
     titleColor: "text-[#FF4F86]",
     imagePosition: "bottom-[-50px] right-[-15px]",
   },
@@ -45,7 +48,7 @@ const programs: Program[] = [
     ),
     bgColor: "bg-green-500",
     bgGradient: "bg-gradient-to-r from-green-500 to-teal-400",
-    imageSrc: "src/assets/images/education icon1.svg",
+    imageSrc: educationicon1,
     titleColor: "text-[#59B049]",
     imagePosition: "bottom-[-30px] right-[-15px]",
   },
