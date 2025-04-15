@@ -57,6 +57,15 @@ const PuzzleGamePage: React.FC = () => {
   const nextLevel = () => {
     setCurrentLevel((prevLevel) => {
       const newLevel = prevLevel + 1;
+  
+      // Əgər sonuncu leveldəsə, finish göstər
+      if (newLevel >= levels.length) {
+        console.log("Game finished!");
+        // Burada modal göstərə bilərsən, və ya başqa səhifəyə yönləndirə bilərsən
+        navigate("/finish"); // məsələn, bitmə səhifəsi
+        return prevLevel; // level artırılmasın
+      }
+  
       navigate({
         pathname: "/puzzlegame",
         search: createSearchParams({
@@ -65,8 +74,10 @@ const PuzzleGamePage: React.FC = () => {
       });
       return newLevel;
     });
+  
     setCompleted(false);
   };
+  
 
   const goToLevel = (level: number) => {
     setCurrentLevel(level);
@@ -74,7 +85,7 @@ const PuzzleGamePage: React.FC = () => {
     navigate({
       pathname: "/puzzlegame",
       search: createSearchParams({
-        levels: (level + 1).toString(), // +1 çünki sıfırdan başlayırıq
+        levels: (level + 1).toString(),
       }).toString(),
     });
   };

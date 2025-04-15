@@ -1,15 +1,27 @@
 import axios, { isAxiosError } from "axios";
+import { ArrowLeft, ChevronDown } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { animation } from "../../utils/Animation";
 
 const RegisterPage: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    email: string;
+    name: string;
+    password: string;
+    username: string;
+    duty: "valideyn" | "tələbə";
+  }>({
     email: "",
     name: "",
     password: "",
     username: "",
+    duty: "tələbə",
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showOption, setShowOption] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -136,15 +148,54 @@ const RegisterPage: React.FC = () => {
             />
           </div>
 
+          <div className="mb-6 relative">
+            <span
+              onClick={() => setShowOption(!showOption)}
+              className="text-[#1E3A8A] cursor-pointer capitalize font-semibold text-[15px] border rounded-lg px-2 flex items-center justify-center w-fit"
+            >
+              <span> {formData.duty}</span>
+              <ChevronDown size={16} />
+            </span>
+            <AnimatePresence>
+              {showOption && (
+                <motion.div
+                  key="dropdown" // vacib deyil, amma yaxşı praktika
+                  variants={animation}
+                  initial="initial"
+                  animate="animate"
+                  exit={{ opacity: 0, y: -10, transition: { duration: 0.3 } }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col bg-white shadow-md w-fit py-2 px-2 rounded-xl absolute z-10 mt-2"
+                >
+                  <span
+                    className="cursor-pointer font-sans font-medium text-[#1E3A8A]"
+                    onClick={() => {
+                      setFormData((prev) => ({ ...prev, duty: "valideyn" }));
+                      setShowOption(false);
+                    }}
+                  >
+                    Valideyn
+                  </span>
+                  <hr />
+                  <span
+                    className="cursor-pointer font-sans font-medium text-[#1E3A8A]"
+                    onClick={() => {
+                      setFormData((prev) => ({ ...prev, duty: "tələbə" }));
+                      setShowOption(false);
+                    }}
+                  >
+                    Tələbə
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <div className="flex items-center justify-center mb-4">
             <hr className="border-t border-[#1E3A8A] w-2/5" />
             <p className="mx-4 text-[#1E3A8A] text-sm">və ya</p>
             <hr className="border-t border-[#1E3A8A] w-2/5" />
           </div>
-          <select name="duty" id="duty">
-            <option value="Valideyn">Valideyn</option>
-            <option value="Tələbə">Tələbə</option>
-          </select>
 
           <div className="mb-4">
             <button
@@ -181,6 +232,13 @@ const RegisterPage: React.FC = () => {
             Qeydiyyatdan keç
           </button>
         </form>
+        <Link
+          to="/"
+          className=" flex items-center justify-start gap-2 mt-5 rounded-xl hover:underline duration-300 p-3 text-[#08244E] transition-all font-semibold"
+        >
+          <ArrowLeft size={18} />
+          Geri qayıt
+        </Link>
       </div>
     </div>
   );

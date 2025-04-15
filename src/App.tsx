@@ -14,6 +14,7 @@ import DonateFormPage from "./pages/donate_page/donate_form_page";
 import RegisterPage from "./pages/register/register_page";
 import LoginPage from "./pages/login/login_page";
 import DragDropPage from "./pages/dragdrop/dragdrop_page";
+import Finish from "./components/general/Finish";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Routes>
           {/* Header və Footer olmayan səhifələr */}
           <Route path="/puzzlegame" element={<PuzzleGamePage />} />
-					<Route path="/dragdrop" element={<DragDropPage />} />
+          <Route path="/dragdrop" element={<DragDropPage />} />
           <Route path="/registerpage" element={<RegisterPage />} />
           <Route path="/loginpage" element={<LoginPage />} />
 
@@ -38,7 +39,7 @@ function App() {
                   <Route path="/express" element={<ExpressPage />} />
                   <Route path="/donatepage" element={<DonatePage />} />
                   <Route path="/donateformpage" element={<DonateFormPage />} />
-									
+                  <Route path="/finish" element={<Finish />} />
                 </Routes>
                 <Footer />
               </>
@@ -49,6 +50,5 @@ function App() {
     </DndProvider>
   );
 }
-
 
 export default App;

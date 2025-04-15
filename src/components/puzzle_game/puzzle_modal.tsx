@@ -57,7 +57,6 @@ const PuzzleModal: React.FC<PuzzleModalProps> = ({
           <button
             className="mt-8 px-6 py-3 bg-[#FDD446] text-[#08244E] font-bold text-[22px] rounded-[10px] cursor-pointer"
             onClick={() => {
-              console.log("Davam et düyməsi basıldı!"); // Konsola yoxlama üçün əlavə edildi
               onClose();
               setTimeout(() => {
                 onNext();

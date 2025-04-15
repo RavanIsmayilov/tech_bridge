@@ -54,13 +54,13 @@ const Header: React.FC = () => {
             <Link to="/" className="hover:text-blue-600 transition-all">
               Ana səhifə
             </Link>
-            <Link to="#" className="hover:text-blue-600 transition-all">
+            <Link to="/" className="hover:text-blue-600 transition-all">
               Haqqımızda
             </Link>
-            <Link to="#" className="hover:text-blue-600 transition-all">
+            <Link to="/" className="hover:text-blue-600 transition-all">
               Xəbərlər & Tədbirlər
             </Link>
-            <Link to="#" className="hover:text-blue-600 transition-all">
+            <Link to="/" className="hover:text-blue-600 transition-all">
               Əlaqə
             </Link>
           </nav>
@@ -82,9 +82,9 @@ const Header: React.FC = () => {
           </button>
 
           {/* User Icon */}
-          <div className="hidden lg:flex">
+          <Link to="/registerpage" className="hidden lg:flex">
             <img className="cursor-pointer" src={UserIcon} alt="user_icon" />
-          </div>
+          </Link>
         </div>
       </motion.div>
 
