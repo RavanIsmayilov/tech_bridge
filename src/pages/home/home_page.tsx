@@ -228,7 +228,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
           transition={{ duration: 0.5 }}
           className="relative z-10 text-center md:text-center flex flex-col items-center md:items-center"
         >
-          <h2 className="text-2xl md:text-[32px] font-bold text-[#08244E] leading-tight">
+          <h2 className="text-2xl md:text-[32px] font-bold text-[#fff] leading-tight">
             Yaradıcılığın məktəbinə <br className="hidden md:block" /> buradan
             keç!
           </h2>
@@ -253,7 +253,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                   alt="WatchVideoIcon"
                   className="w-5 h-5"
                 />
-                <span className="">Videonu izlə</span>
+                <span className="text-white">Videonu izlə</span>
               </Link>
             </motion.div>
           </div>
@@ -261,32 +261,34 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
       </motion.section>
 
       {/* Info section */}
-      <section className="bg-[#3B5D7D] px-8 flex items-center">
+      <section className="bg-[#3B5D7D] px-8 py-2 flex items-center">
         <div className="w-full flex items-center text-white max-w-[1600px] mx-auto">
-          <div className="text-[36px] font-bold border-r-2 pr-7 h-[110px] flex items-center text-center">
+          <div className="xl:text-[36px] font-bold border-r-2 pr-7 h-[110px] flex items-center text-center">
             Burada rəqəmlər danışır:
           </div>
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-6 flex-wrap gap-5">
             <div className="flex items-center px-7">
-              <span className="text-[30px] font-bold mr-7">Tələbələr:</span>
+              <span className="xl:text-[30px] font-bold mr-7">Tələbələr:</span>
               <span
-                className={`bg-[#ED8116] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
+                className={`bg-[#ED8116] text-white font-bold xl:text-[20px] xl:w-12 xl:h-12 w-8 h-8 flex justify-center items-center rounded-full`}
               >
                 <AnimatedCounter count={82} />
               </span>
             </div>
-            <div className="flex items-center">
-              <span className="text-[30px] font-bold mr-7">Valideynlər:</span>
+            <div className="flex items-center px-7">
+              <span className="xl:text-[30px] font-bold mr-7">
+                Valideynlər:
+              </span>
               <span
-                className={`bg-[#78D148] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
+                className={`bg-[#78D148] text-white font-bold xl:text-[20px] xl:w-12 xl:h-12 w-8 h-8 flex justify-center items-center rounded-full`}
               >
                 <AnimatedCounter count={0} />
               </span>
             </div>
-            <div className="flex items-center">
-              <span className="text-[30px] font-bold mr-7">Müəllimlər:</span>
+            <div className="flex items-center px-7">
+              <span className="xl:text-[30px] font-bold mr-7">Müəllimlər:</span>
               <span
-                className={`bg-[#6BBDE5] text-white font-bold text-[20px] w-12 h-12 flex justify-center items-center rounded-full`}
+                className={`bg-[#6BBDE5] text-white font-bold xl:text-[20px] xl:w-12 xl:h-12 w-8 h-8 flex justify-center items-center rounded-full`}
               >
                 <AnimatedCounter count={5} />
               </span>
@@ -307,37 +309,37 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
           src="src/assets/images/aboutframeup.svg"
           alt=""
         />
-        <div className="max-w-[1660px] mx-auto relative flex items-center justify-between pt-[120px] pb-[200px] px-8">
-          <div className="flex w-full justify-between overflow-hidden">
+        <div className="max-w-[1660px] mx-auto relative flex items-center justify-between xl:pt-[120px] xl:pb-[200px] py-5 px-8">
+          <div className="flex w-full justify-between overflow-hidden max-lg:flex-wrap">
             {/* Left Side (Image) */}
-            <div className=" w-full p-4 h-full">
+            <div className=" w-full xl:p-4 h-full flex justify-between gap-5 flex-wrap">
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
                 src={about2} // Replace with your image URL
                 alt="About Image"
-                className="absolute top-[10%] left-[10%] object-cover z-1 w-[20%] h-[332px] rounded-2xl"
+                className="lg:absolute lg:top-[10%] lg:left-[10%] object-cover z-1 lg:w-[20%] w-full md:h-56 max-sm:h-80 lg:h-[332px] rounded-2xl max-lg:mb-15"
               />
               <img
                 src={aboutellipse} // Replace with your image URL
                 alt="About Image"
-                className="absolute object-cover top-60 left-70 right-50"
+                className="absolute object-cover top-60 left-70 right-50 xl:flex hidden z-0"
               />
               <motion.img
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
                 src={about1} // Replace with your image URL
                 alt="About Image"
-                className="absolute bottom-[10%] left-[25%] object-cover z-2 w-[20%] h-[332px] rounded-2xl"
+                className="lg:absolute lg:bottom-[10%]  lg:left-[25%] object-cover z-0 lg:w-[20%] w-full md:h-56 max-sm:h-80 lg:h-[332px] rounded-2xl"
               />
             </div>
 
             {/* Right Side (Text Content) */}
-            <div className="w-full p-8 text-white font-verdana">
+            <div className="w-full p-8 text-white font-verdana relative z-20">
               <h2 className="text-5xl font-bold mb-6 text-[#6C325B] text-center">
                 Haqqımızda
               </h2>
-              <p className="text-[26px] font-verdana text-black">
+              <p className="xl:text-[26px] text-base font-verdana text-black">
                 Tech4Equity – tələbələri bilik, imkanlar və dəstəklə
                 gücləndirməyi hədəfləyən bir icmadır. Missiyamız tələbələri
                 yeniliklər, müsabiqələr və faydalı resurslar haqqında
@@ -371,18 +373,18 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
         />
 
         {/* Content */}
-        <div className="relative py-16 px-6 md:px-24 overflow-hidden h-[700px] max-w-[1660px] mx-auto">
+        <div className="relative py-16 px-6 md:px-24 overflow-hidden xl:h-[700px] max-w-[1660px] mx-auto">
           <div className="absolute bottom-10 left-1/3 w-[120px] h-[120px] border-[2px] border-[#6F74DD] border-dashed rounded-[20px] z-0"></div>
           <div className="absolute bottom-20 right-10 w-16 h-16 border-[2px] border-yellow-400 rotate-45 z-0"></div>{" "}
           <div className="relative z-10 flex flex-col lg:flex-row items-start gap-10">
             {/* Sol tərəf - Mətn */}
-            <div className="lg:w-[70%] flex justify-start items-center flex-col">
+            <div className="lg:w-[70%] flex justify-start items-center flex-col duration-200">
               <div className="w-[70%] flex justify-start items-center">
                 <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#6C325B] text-left">
                   Komandamız
                 </h2>
               </div>
-              <p className="text-[#08244E] text-[28px] leading-relaxed mx-auto lg:mx-0 w-[70%] h-[300px]">
+              <p className="text-[#08244E] xl:text-[28px] sm:text-2xl max-sm:text-md leading-relaxed mx-auto lg:mx-0 w-[70%] h-[300px]">
                 Bizim kurslarımız şagirdləri gələcəyin peşələrinə hazırlayaraq
                 onları süni intellekt, kvant hesablamaları, blok kodlaşdırma və
                 digər qabaqcıl texnologiyalarla tanış edir. TechBridge ilə
@@ -393,13 +395,16 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
 
             {/* Sağ tərəf - Şəkil + Slider */}
             <div className="lg:w-1/2">
-              <div className="border-[2px] border-[#D7BFFF] rounded-2xl p-3">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="border-[2px] border-[#D7BFFF] rounded-2xl p-3"
+              >
                 <img
                   src={Tech4EquityTeam} // şəkil yolunu uyğunlaşdır
                   alt="Komanda"
                   className="rounded-xl w-full h-auto object-cover"
                 />
-              </div>
+              </motion.div>
               <div className="flex justify-center gap-2 mt-4">
                 <span className="w-2.5 h-2.5 bg-black rounded-full"></span>
                 <span className="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
@@ -431,15 +436,15 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
               viewport={{ once: true }}
               custom={index}
               whileHover={{ scale: 1.1 }}
-              className={`relative rounded-[30px] p-15 text-[#08244E] font-verdana ${course.color} flex flex-col items-start hover:shadow-md transition-shadow duration-200`}
+              className={`relative rounded-[30px] xl:p-15 px-5 py-4 text-[#08244E] font-verdana ${course.color} flex flex-col items-start hover:shadow-md transition-shadow duration-200`}
             >
               <img
                 src={course.image}
                 alt={course.title}
-                className={`absolute bottom-0 ${course.position} right-0 mb-4 object-cover rounded-full`}
+                className={`absolute xl:${course.position} max-lg:w-30 max-lg:h-30 bottom-0 right-0 mb-4 object-cover rounded-full`}
               />
-              <h3 className="text-[28px] mb-4 font-bold">{course.title}</h3>
-              <p className="text-[20px] mb-15 text-[#08244ECF] w-[400px]">
+              <h3 className="xl:text-[28px] mb-4 font-bold">{course.title}</h3>
+              <p className="xl:text-[20px] mb-15 text-[#08244ECF] xl:w-[400px]">
                 {course.description}
               </p>
               <motion.button
@@ -506,7 +511,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                     } w-full`}
                   >
                     <p
-                      className={`text-[#6C325B] font-bold text-[38px] mb-4 w-fit ${
+                      className={`text-[#6C325B] font-bold lg:text-[38px] md:text-2xl mb-4 w-fit ${
                         index === 0 && "mr-10"
                       }`}
                     >
@@ -573,7 +578,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
           {/* Slider */}
           <div className="overflow-hidden w-[90%]">
             <div
-              className="flex transition-transform duration-500 ease-in-out gap-[100px]"
+              className="flex transition-transform duration-500 ease-in-out gap-[70px]"
               style={{
                 transform: `translateX(-${currentIndex.newsDataIndex * 52}%)`,
               }}
@@ -581,10 +586,10 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
               {newsData.map((news, index) => (
                 <div
                   key={index}
-                  className="border-2 h-[450px] flex justify-between border-[#FE93A6] bg-[#FDF6F6] rounded-[30px] p-6 w-[75%] lg:w-[45%] flex-shrink-0 shadow-lg"
+                  className="border-2 xl:h-[450px] flex-wrap flex justify-between border-[#FE93A6] bg-[#FDF6F6] rounded-[30px] p-6 w-[75%] max-md:w-full lg:w-[45%] flex-shrink-0 shadow-lg"
                 >
-                  <div className="w-1/2">
-                    <h3 className="font-bold text-left text-[#6C325B] text-[26px]">
+                  <div className="xl:w-1/2 h-[300px]">
+                    <h3 className="font-bold text-left text-[#6C325B] md:text-[26px]">
                       {news.title}
                     </h3>
                     <div className="flex gap-2 items-center">
@@ -601,7 +606,7 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                       <Shortened shortText={news.description} />
                     </p>
                   </div>
-                  <div className="w-1/2 relative">
+                  <div className="xl:w-1/2 relative h-fit flex gap-5 flex-wrap">
                     {news.image &&
                       news.image.map((img, index) => (
                         <img
@@ -610,9 +615,9 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                           alt="news"
                           className={`mt-4 rounded-lg ${
                             index === 0
-                              ? "w-[180px] h-[180px] right-0"
-                              : "w-[200px] h-[200px] top-[30%] left-[10%]"
-                          } absolute `}
+                              ? "xl:w-[180px] h-[180px] max-md:w-56 w-full xl:top-[50%] xl:right-0"
+                              : "xl:w-[200px] h-[180px] max-md:w-56 w-full xl:top-[100px] xl:left-[10%]"
+                          } xl:absolute `}
                         />
                       ))}
                   </div>
@@ -640,7 +645,8 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
         <h2 className="text-[42px] font-bold text-[#C068A6] mb-12 text-center">
           Rəylər
         </h2>
-        <div className="relative flex items-center justify-center overflow-hidden w-full ">
+
+        <div className="relative flex items-center justify-center overflow-hidden max-md:w-full">
           <button
             className="absolute left-0 bg-transparent text-[#C068A6] p-2 z-10 cursor-pointer"
             onClick={testimonialsPrevSlide}
@@ -649,12 +655,14 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
           </button>
 
           {/* Slider */}
-          <div className="overflow-hidden w-[90%]">
+          <div className="overflow-hidden lg:w-[90%] w-full">
             <div
-              className="flex transition-transform duration-500 ease-in-out gap-[100px] ml-[35px]"
+              className="flex transition-transform duration-500 ease-in-out gap-5"
               style={{
                 transform: `translateX(-${
-                  currentIndex.testimonialsIndex * 52
+                  window.innerWidth < 768
+                    ? currentIndex.testimonialsIndex * 100
+                    : currentIndex.testimonialsIndex * 50
                 }%)`,
               }}
             >
@@ -663,20 +671,19 @@ Birlikdə daha çox həyatı dəyişdirmək və daha çox ürəyə toxunmaq üç
                 return (
                   <div
                     key={index}
-                    className="relative flex flex-col items-center"
+                    className="flex-shrink-0 w-full md:w-1/2 flex justify-center"
                   >
-                    {/* Kartın özü */}
                     <div
                       className={`mt-[40px] border h-[350px] flex flex-col items-center justify-center 
-      border-[#FE93A6] rounded-[30px] p-6 w-[75%] lg:w-[600px] flex-shrink-0 
-      shadow-lg transition-all duration-300 ${
-        isActive ? "bg-[#FFF7C2]" : "bg-[#E6FAFF]"
-      }`}
+              border-[#FE93A6] rounded-[30px] p-6 w-full max-w-[600px]
+              shadow-lg transition-all duration-300 ${
+                isActive ? "bg-[#FFF7C2]" : "bg-[#E6FAFF]"
+              }`}
                     >
-                      <p className="text-[#6C325B] font-semibold text-[26px] mt-8">
+                      <p className="text-[#6C325B] font-semibold text-[22px] xl:text-[26px] mt-8">
                         {testimonial.name}
                       </p>
-                      <span className="text-[20px] text-[#08244E] text-center mt-2">
+                      <span className="text-[16px] xl:text-[20px] text-[#08244E] text-center mt-2">
                         "{testimonial.text}"
                       </span>
                     </div>
